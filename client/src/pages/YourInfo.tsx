@@ -7,6 +7,7 @@ import Location from "../components/your-infos/Location"
 import Preferences from "../components/your-infos/Preferences"
 import Socials from "../components/your-infos/Socials"
 import Finish from "../components/your-infos/Finish"
+import { useNavigate } from "react-router-dom"
 
 const steps = [
   <Welcome />,
@@ -23,13 +24,29 @@ const YourInfo = () => {
   const savedStep = localStorage.getItem('currentStep');
   const [index, setIndex] = useState(savedStep ? Number(savedStep) : 0);
 
+  const navigate = useNavigate()
   const renderForm = () => steps[index]
   const handlePrevious = () => {
+    if (index === 0) {
+      navigate('/')
+    }
+
     if (index > 0) {
       setIndex(index - 1)
     }
   }
   const handleNext = () => {
+    if (index === steps.length - 1) {
+      try {
+        //store the user info in the database and navigate to the dashboard
+      } catch (error) {
+        console.error(error)
+      }
+      finally {
+        localStorage.removeItem('currentStep')
+        navigate('/dashboard')
+      }
+    }
     if (index < steps.length - 1) {
       setIndex(index + 1)
     }
@@ -52,9 +69,13 @@ const YourInfo = () => {
       <section className="max-w-[600px] w-full flex-center flex-col p-10">
         {renderForm()}
         <div className="flex-between w-full">
-          <button onClick={handlePrevious} disabled={index === 0} className="bg-shade-200 rounded-xl px-6 py-2">Previous</button>
+          <button onClick={handlePrevious} className="bg-shade-200 rounded-xl px-6 py-2">
+            {
+              index === 0 ? "Back" : "Previous"
+            }
+          </button>
           {/* handle submit on index 7 */}
-          <button onClick={handleNext} disabled={index === 7} className="bg-shade-200 rounded-xl px-6 py-2">
+          <button onClick={handleNext} className="bg-shade-200 rounded-xl px-6 py-2">
             {
               index === 7 ? "Submit" : "Next"
             }

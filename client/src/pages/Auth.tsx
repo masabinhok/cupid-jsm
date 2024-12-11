@@ -1,11 +1,16 @@
 import { useState } from "react";
 import OtpBox from "../components/OtpBox";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [isSent, setIsSent] = useState<boolean>(false);
+
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,6 +36,12 @@ const Auth = () => {
       setLoading(false);
     }
   }
+
+
+  if (isAuthenticated) {
+    navigate('/');
+  }
+
   return (
     <main className="main relative">
       <section className="p-5 flex-center flex-col max-w-[400px] w-full">
