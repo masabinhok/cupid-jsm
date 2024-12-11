@@ -4,6 +4,7 @@ import { AuthProviderWithLocation } from "./context/AuthProviderWithLocation";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import Profile from "./pages/YourInfo";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           {/* Protected Route */}
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<Home />} />
+            <Route path="/your-info" element={<Profile />} />
           </Route>
         </Routes>
       </AuthProviderWithLocation>
