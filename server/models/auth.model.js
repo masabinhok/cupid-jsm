@@ -2,29 +2,29 @@ import mongoose from 'mongoose';
 import validator from 'validator';
 
 const userSchema = new mongoose.Schema({
-    firstName: { type: String, required: true },
+    firstName: { type: String },
     middleName: { type: String, default: null },
-    lastName: { type: String, required: true },
+    lastName: { type: String },
     email: {
-    type: String,
-    required: true,
-    unique: true,
-    validate: {
-     validator: validator.isEmail,
-     message: '{VALUE} is not a valid email',
-    }
+        type: String,
+        required: true,
+        unique: true,
+        validate: {
+            validator: validator.isEmail,
+            message: '{VALUE} is not a valid email',
+        },
     },
     secret: {
-      type: String,
-      default : null,
+        type: String,
+        default: null,
     },
     otpGeneratedAt: {
-      type: Date,
-      default: null
+        type: Date,
+        default: null,
     },
     phone: { type: String, unique: true }, 
-    gender: { type: String, enum: ['Male', 'Female', 'Non-binary', 'Other'], required: true },
-    dateOfBirth: { type: Date, required: true },
+    gender: { type: String, enum: ['Male', 'Female', 'Non-binary', 'Other'] },
+    dateOfBirth: { type: Date },
     profilePicture: { type: String, default: 'default.jpg' },
     bio: { type: String, maxlength: 500 },
     interests: [{ type: String }], // Hobbies or activities they enjoy
@@ -59,11 +59,6 @@ const userSchema = new mongoose.Schema({
     updatedAt: { type: Date, default: Date.now },
 }, { timestamps: true });
 
-
-
-
-
-
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
 
 export default User;
