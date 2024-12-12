@@ -10,7 +10,9 @@ const OtpInput = ({
   const [otp, setOtp] = useState(new Array(length).fill(""));
 
   useEffect(() => {
-  }, [otp]);
+    const otpInput = document.querySelectorAll("input[type='text']");
+    (otpInput[0] as HTMLInputElement).focus();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const element = e.target;
