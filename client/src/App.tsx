@@ -5,6 +5,7 @@ import Auth from "./pages/Auth";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
 import YourInfo from "./pages/YourInfo";
+import { FormProvider } from "./context/FormContext";
 
 export default function App() {
   return (
@@ -13,10 +14,18 @@ export default function App() {
         <Routes>
           {/* Public Route */}
           <Route path="/auth" element={<Auth />} />
-          {/* Protected Route */}
+
+          {/* Protected Routes */}
           <Route path="/" element={<Home />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/your-info" element={<YourInfo />} />
+            <Route
+              path="/your-info"
+              element={
+                <FormProvider>
+                  <YourInfo />
+                </FormProvider>
+              }
+            />
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
