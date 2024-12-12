@@ -67,8 +67,12 @@ const OtpBox = ({ email }: { email: string }) => {
     }
   }
 
+  const handleEnter = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") handleVerify();
+  }
+
   return (
-    <section className="absolute flex-center p-5 rounded-xl max-w-[500px] m-5 w-full h-[300px]">
+    <section onKeyDown={handleEnter} className="absolute flex-center p-5 rounded-xl max-w-[500px] m-5 w-full h-[300px]">
       <div className="bg-white flex-center flex-col w-full h-full rounded-xl p-5">
         <h2 className="text-xl font-bold">Enter your OTP</h2>
         <OtpInput length={6} onChangeOTP={handleChange} />
