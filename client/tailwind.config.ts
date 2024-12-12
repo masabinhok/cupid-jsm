@@ -7,19 +7,25 @@ export default {
   theme: {
     extend: {
       colors: {
-       shade: {
-          100: "#ffe5ec",
-          200: "#ffc2d1",
-          300: "#ffb3c6",
-          400: "#ff8fab",
-          500: "#fb6f92",
-       },
-       alert: "#ff0000",
+        shade: {
+          100: "#FFF0F3",
+          200: "#FFD6E0",
+          300: "#FFAACF",
+          400: "#FF85B3",
+          500: "#F65D8A",
+        },
+        normal: "#4B4F56",
+        alert: "#D72638",
+        softWhite: "#FFF5F7",
+        romanticRed: "#E63946",
+        blush: "#FFB3C6",
+        mutedPink: "#F5A3B7",
       },
       fontFamily: {
         spaceGrotsek: ["Space Grotesk", "sans-serif"],
-      }
+        romance: ["Playfair Display", "serif"],
+      },
     },
   },
   plugins: [],
-}
+};
