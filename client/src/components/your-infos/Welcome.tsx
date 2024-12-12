@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
+import { useForm } from "../../context/FormContext";
 
-interface WelcomeProps {
-  isAgreed: boolean;
-  setIsAgreed: (isAgreed: boolean) => void;
-}
 
-const Welcome = ({ isAgreed, setIsAgreed }: WelcomeProps) => {
+const Welcome = () => {
+  const { isCompleted, setIsCompleted } = useForm();
   return (
     <section className="max-w-[800px] h-[500px]">
       <div className="flex-center flex-col h-full">
@@ -16,8 +14,8 @@ const Welcome = ({ isAgreed, setIsAgreed }: WelcomeProps) => {
         <div className="flex-center gap-2 mt-10">
           <input
             type="checkbox"
-            checked={isAgreed}
-            onChange={() => setIsAgreed(!isAgreed)}
+            checked={isCompleted}
+            onChange={() => setIsCompleted(!isCompleted)}
           />
           <p>
             I agree to the{" "}
@@ -28,7 +26,7 @@ const Welcome = ({ isAgreed, setIsAgreed }: WelcomeProps) => {
           </p>
         </div>
         <p className="text-normal text-sm mt-6 text-center">
-         We prioritize your privacy and security above all.
+          We prioritize your privacy and security above all.
         </p>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import Welcome from "../components/your-infos/Welcome"
 import BasicInfo from "../components/your-infos/BasicInfo"
 import ProfilePic from "../components/your-infos/ProfilePic"
@@ -7,17 +7,16 @@ import Location from "../components/your-infos/Location"
 import Preferences from "../components/your-infos/Preferences"
 import Socials from "../components/your-infos/Socials"
 import Finish from "../components/your-infos/Finish"
-import { useNavigate } from "react-router-dom"
 import clsx from "clsx"
+import { useForm } from "../context/FormContext"
 
 
 const YourInfo = () => {
-  const savedStep = localStorage.getItem('currentStep');
-  const [index, setIndex] = useState(savedStep ? Number(savedStep) : 0);
-  const [isAgreed, setIsAgreed] = useState<boolean>(false)
+
+  const { index, setIndex, handleNext, handlePrevious, isCompleted } = useForm()
 
   const steps = [
-    <Welcome isAgreed={isAgreed} setIsAgreed={setIsAgreed} />,
+    <Welcome />,
     <BasicInfo />,
     <ProfilePic />,
     <Location />,
@@ -28,33 +27,7 @@ const YourInfo = () => {
   ];
 
 
-  const navigate = useNavigate()
   const renderForm = () => steps[index]
-  const handlePrevious = () => {
-    if (index === 0) {
-      navigate('/')
-    }
-
-    if (index > 0) {
-      setIndex(index - 1)
-    }
-  }
-  const handleNext = () => {
-    if (index === steps.length - 1) {
-      try {
-        //store the user info in the database and navigate to the dashboard
-      } catch (error) {
-        console.error(error)
-      }
-      finally {
-        localStorage.removeItem('currentStep')
-        navigate('/dashboard')
-      }
-    }
-    if (index < steps.length - 1) {
-      setIndex(index + 1)
-    }
-  }
 
   //store the value of index in localStorage
   useEffect(() => {
@@ -80,11 +53,11 @@ const YourInfo = () => {
           </button>
           {/* handle submit on index 7 */}
           <button onClick={handleNext}
-            disabled={index === 0 && !isAgreed}
+            disabled={index === 0 && !isCompleted}
             className={clsx
               (
                 "bg-romanticRed text-white rounded-xl px-6 py-2",
-                index === 0 && !isAgreed ? "cursor-not-allowed bg-normal" : "cursor-pointer tranimate"
+                index === 0 && !isCompleted ? "cursor-not-allowed bg-normal" : "cursor-pointer tranimate"
               )}>
             {
               index === 7 ? "Submit" : "Next"
