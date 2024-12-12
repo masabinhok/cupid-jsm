@@ -46,8 +46,7 @@ export const verifyOtp = async (req, res) => {
       return res.status(400).json({ message: 'Invalid OTP.' });
     }
 
-
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
     res.status(200).json({ message: 'OTP verified successfully!', token });
   } catch (error) {
     logger.error(`Error in verifyOtp: ${error.message}`);
