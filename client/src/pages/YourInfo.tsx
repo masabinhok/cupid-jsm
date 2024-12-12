@@ -53,11 +53,11 @@ const YourInfo = () => {
           </button>
           {/* handle submit on index 7 */}
           <button onClick={handleNext}
-            disabled={index === 0 && !isCompleted}
+            disabled={!isCompleted}
             className={clsx
               (
                 "bg-romanticRed text-white rounded-xl px-6 py-2",
-                index === 0 && !isCompleted ? "cursor-not-allowed bg-normal" : "cursor-pointer tranimate"
+                !isCompleted ? "cursor-not-allowed bg-normal" : "cursor-pointer tranimate"
               )}>
             {
               index === 7 ? "Submit" : "Next"

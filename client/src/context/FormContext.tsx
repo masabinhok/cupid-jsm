@@ -2,12 +2,12 @@ import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface IFormData {
-  firstName: string;
-  lastName: string;
-  dob: string;
-  gender: string;
-  middleName?: string;
-  phone?: string;
+  firstName: string | null;
+  lastName: string | null;
+  dob: string | null;
+  gender: string | null;
+  middleName?: string | null;
+  phone?: string | null;
 }
 
 interface FormContextProps {
@@ -38,12 +38,12 @@ interface FormProviderProps {
 
 export const FormProvider = ({ children }: FormProviderProps) => {
   const [formData, setFormData] = useState<IFormData>({
-    firstName: '',
-    lastName: '',
-    dob: '',
-    gender: '',
-    middleName: '',
-    phone: '',
+    firstName: null,
+    lastName: null,
+    dob: null,
+    gender: null,
+    middleName: null,
+    phone: null,
   });
   const savedStep = localStorage.getItem('currentStep');
   const [index, setIndex] = useState(savedStep ? Number(savedStep) : 0);

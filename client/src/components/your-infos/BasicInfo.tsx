@@ -1,7 +1,20 @@
+import { useEffect } from "react";
 import { useForm } from "../../context/FormContext";
 
 const BasicInfo = () => {
-  const { formData, updateFormData } = useForm();
+  const { formData, updateFormData, setIsCompleted } = useForm();
+
+  useEffect(() => {
+    setIsCompleted(false);
+  }, [])
+
+  useEffect(() => {
+    const { firstName, lastName, dob, gender } = formData;
+    if (firstName && lastName && dob && gender) {
+      console.log("Basic info is complete");
+      setIsCompleted(true);
+    }
+  }, [formData])
 
   return (
     <section className="max-w-[800px] my-5">
@@ -12,7 +25,7 @@ const BasicInfo = () => {
             <label htmlFor="firstName">
               <span className="font-bold">First Name</span>
               <input
-                value={formData.firstName}
+                value={formData.firstName as string}
                 onChange={(e) => updateFormData("firstName", e.target.value)}
                 placeholder="Sabin"
                 type="text"
@@ -24,7 +37,7 @@ const BasicInfo = () => {
             <label htmlFor="middleName">
               <span className="font-bold">Middle Name</span>
               <input
-                value={formData.middleName}
+                value={formData.middleName as string}
                 onChange={(e) => updateFormData("middleName", e.target.value)}
                 type="text"
                 placeholder="..."
@@ -35,7 +48,7 @@ const BasicInfo = () => {
             <label htmlFor="lastName">
               <span className="font-bold">Last Name</span>
               <input
-                value={formData.lastName}
+                value={formData.lastName as string}
                 onChange={(e) => updateFormData("lastName", e.target.value)}
                 placeholder="Shrestha"
                 type="text"
@@ -51,7 +64,7 @@ const BasicInfo = () => {
                 Phone <span className="text-sm">(optional for Cupid's initial phase)</span>
               </span>
               <input
-                value={formData.phone}
+                value={formData.phone as string}
                 onChange={(e) => updateFormData("phone", e.target.value)}
                 placeholder="98419837.."
                 type="phone"
@@ -62,7 +75,7 @@ const BasicInfo = () => {
             <label htmlFor="dob">
               <span className="font-bold">Date Of Birth</span>
               <input
-                value={formData.dob}
+                value={formData.dob as string}
                 onChange={(e) => updateFormData("dob", e.target.value)}
                 type="date"
                 name="dob"
@@ -74,7 +87,7 @@ const BasicInfo = () => {
           <label htmlFor="gender">
             <span className="font-bold">Gender</span>
             <select
-              value={formData.gender}
+              value={formData.gender as string}
               onChange={(e) => updateFormData("gender", e.target.value)}
               name="gender"
               className="input"
