@@ -54,7 +54,7 @@ const ProfilePic = () => {
           <div className="flex flex-col items-center gap-4">
             <label
               htmlFor="profilePicture"
-              className="cursor-pointer text-romanticRed font-bold text-center"
+              className="cursor-pointer font-bold text-center"
             >
               {preview !== defaultPic ? "Change Profile Picture" : "Upload Your Profile Picture"}
             </label>
@@ -71,7 +71,7 @@ const ProfilePic = () => {
                 <img
                   src={preview}
                   alt="Profile Preview"
-                  className="w-32 h-32 object-cover rounded-full shadow-md"
+                  className="w-40 h-40 object-cover rounded-full  border-shade-200 border-4"
                 />
               </div>
             )}
