@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface IFormData {
@@ -12,8 +12,11 @@ interface IFormData {
   email: string | null;
   bio?: string | null;
   interests?: string[] | null;
-  city?: string | null;
-  country?: string | null;
+  location: {
+    city: string | null;
+    country: string | null;
+    coordinates: [number, number] | null;
+  }
   preferenceGender?: string | null;
   preferenceAgeRange?: { min: number; max: number } | null;
   preferenceDistance?: number | null;
@@ -45,31 +48,55 @@ interface FormProviderProps {
 }
 
 export const FormProvider = ({ children }: FormProviderProps) => {
-  const [formData, setFormData] = useState<IFormData>({
-    firstName: null,
-    lastName: null,
-    dateOfBirth: null,
-    gender: null,
-    middleName: null,
-    profilePicture: null,
-    phone: null,
-    email: null,
-    bio: null,
-    interests: null,
-    city: null,
-    country: null,
-    preferenceGender: null,
-    preferenceAgeRange: { min: 18, max: 60 },
-    preferenceDistance: 50,
-  });
+  const savedFormData = localStorage.getItem("formData");
+  const [formData, setFormData] = useState<IFormData>(
+    savedFormData
+      ? JSON.parse(savedFormData)
+      : {
+        firstName: null,
+        lastName: null,
+        dateOfBirth: null,
+        gender: null,
+        middleName: null,
+        profilePicture: null,
+        phone: null,
+        email: null,
+        bio: null,
+        interests: null,
+        location: {
+          city: null,
+          country: null,
+          coordinates: null,
+        },
+        preferenceGender: null,
+        preferenceAgeRange: { min: 18, max: 60 },
+        preferenceDistance: 50,
+      }
+  );
+
 
   const savedStep = localStorage.getItem("currentStep");
   const [index, setIndex] = useState(savedStep ? Number(savedStep) : 0);
   const [isCompleted, setIsCompleted] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    localStorage.setItem("formData", JSON.stringify(formData));
+  }, [formData]);
+
+  useEffect(() => {
+    localStorage.setItem("currentStep", index.toString());
+  }, [index]);
+
   const updateFormData = (field: keyof IFormData, value: any) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (field === "location") {
+      setFormData((prev) => ({
+        ...prev,
+        location: { ...prev.location, ...value },
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [field]: value }));
+    }
   };
 
   const handlePrevious = () => {
