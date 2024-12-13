@@ -83,3 +83,73 @@ export const checkSession = async (req, res)=>{
       res.status(401).json({message: 'Session expired. Please login again.'});
     }
 }
+
+export const saveUserInfo = async (req, res) => {
+  const { 
+    firstName, 
+    lastName, 
+    dateOfBirth, 
+    gender, 
+    middleName, 
+    profilePicture, 
+    phone, 
+    email, 
+    bio, 
+    interests, 
+    location, 
+    preferenceGender, 
+    preferenceCaste, 
+    preferenceDistance, 
+    preferenceAgeRange, 
+    preferenceInterest, 
+    socialLinks 
+  } = req.body;
+
+  // Log the coordinates for debugging purposes
+  console.log(location.coordinates);
+
+  try {
+    // Find the user by email and update their information
+    const newUser = await User.findOneAndUpdate(
+      { email },
+      {
+        firstName,
+        lastName,
+        middleName,
+        gender,
+        dateOfBirth,
+        profilePicture,
+        bio,
+        interests,
+        location: {
+          city: location.city,
+          country: location.country,
+          coordinates: {
+            type: 'Point',
+            coordinates: location.coordinates, // Correctly extract coordinates from location
+          }
+        },
+        preference: {
+          gender: preferenceGender,
+          ageRange: {
+            min: preferenceAgeRange.min,
+            max: preferenceAgeRange.max
+          },
+          maxDistance: preferenceDistance,
+          caste: preferenceCaste,
+          interests: preferenceInterest
+        },
+        socialLinks,
+        phone
+      },
+      { new: true }
+    );
+
+    // Return success response
+    res.status(200).json({ message: 'User info saved successfully.', user: newUser });
+  } catch (error) {
+    // Log error and return failure response
+    logger.error(`Error in saveUserInfo: ${error.message}`);
+    res.status(500).json({ message: 'Error saving user info. Please try again later.', error: error.message });
+  }
+};

@@ -2,9 +2,15 @@ import { Link } from "react-router-dom";
 import { useForm } from "../../context/FormContext";
 import { getAge } from "../../lib/utils";
 import { useAuth } from "../../context/AuthContext";
+import { useEffect } from "react";
 
 const Finish = () => {
-  const { formData } = useForm();
+  const { formData, setIsCompleted } = useForm();
+  
+  useEffect(() => {
+    setIsCompleted(true);
+  }, []);
+
   const {
     firstName,
     middleName,

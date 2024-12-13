@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 interface IFormData {
   firstName: string | null;
@@ -9,7 +10,6 @@ interface IFormData {
   middleName?: string | null;
   profilePicture: string | null;
   phone?: string | null;
-  email: string | null;
   bio?: string | null;
   interests?: string[] | null;
   location: {
@@ -34,6 +34,7 @@ interface FormContextProps {
   handlePrevious: () => void;
   handleNext: () => void;
   setIndex: (value: number) => void;
+  loading: boolean;
 }
 
 export const useForm = () => {
@@ -52,6 +53,8 @@ interface FormProviderProps {
 
 export const FormProvider = ({ children }: FormProviderProps) => {
   const savedFormData = localStorage.getItem("formData");
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<IFormData>(
     savedFormData
       ? JSON.parse(savedFormData)
@@ -63,7 +66,6 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         middleName: null,
         profilePicture: null,
         phone: null,
-        email: null,
         bio: null,
         interests: null,
         location: {
@@ -115,14 +117,29 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     }
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (index === 7) {
       try {
-        // Store the user info in the database and navigate to the dashboard
+        setLoading(true);
+        await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/userinfo`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...formData,
+            email: user?.email,
+          }),
+        }).then((res) => res.json()).then((data) => {
+          console.log(data);
+        })
       } catch (error) {
         console.error(error);
       } finally {
         localStorage.removeItem("currentStep");
+        localStorage.removeItem("formData");
+        console.log("Form submitted successfully");
+        setLoading(false);
         navigate("/dashboard");
       }
     }
@@ -142,6 +159,7 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         handleNext,
         handlePrevious,
         setIndex,
+        loading
       }}
     >
       {children}
