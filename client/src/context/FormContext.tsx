@@ -20,6 +20,9 @@ interface IFormData {
   preferenceGender?: string | null;
   preferenceAgeRange?: { min: number; max: number } | null;
   preferenceDistance?: number | null;
+  preferenceCaste?: string[] | null;
+  preferenceInterest?: string[] | null;
+
 }
 
 interface FormContextProps {
@@ -71,6 +74,8 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         preferenceGender: null,
         preferenceAgeRange: { min: 18, max: 60 },
         preferenceDistance: 50,
+        preferenceCaste: null,
+        preferenceInterest: null,
       }
   );
 
