@@ -59,11 +59,7 @@ const userSchema = new mongoose.Schema(
         type: String,
       }]
     },
-    socialLinks: {
-      facebook: { type: String },
-      instagram: { type: String },
-      twitter: { type: String },
-    },
+    socialLinks: [{type: String}],
     matches: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", unique: true }],
     likesSent: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", unique: true }],
     likesReceived: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", unique: true }],

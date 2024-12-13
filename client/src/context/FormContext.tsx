@@ -22,7 +22,7 @@ interface IFormData {
   preferenceDistance?: number | null;
   preferenceCaste?: string[] | null;
   preferenceInterest?: string[] | null;
-
+  socialLinks?: string[] | null;
 }
 
 interface FormContextProps {
@@ -76,6 +76,7 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         preferenceDistance: 50,
         preferenceCaste: null,
         preferenceInterest: null,
+        socialLinks: null,
       }
   );
 
