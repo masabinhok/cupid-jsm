@@ -9,8 +9,8 @@ const BasicInfo = () => {
   }, [])
 
   useEffect(() => {
-    const { firstName, lastName, dob, gender } = formData;
-    if (firstName && lastName && dob && gender) {
+    const { firstName, lastName, dateOfBirth, gender } = formData;
+    if (firstName && lastName && dateOfBirth && gender) {
       console.log("Basic info is complete");
       setIsCompleted(true);
     }
@@ -72,13 +72,13 @@ const BasicInfo = () => {
                 className="input"
               />
             </label>
-            <label htmlFor="dob">
+            <label htmlFor="dateOfBirth">
               <span className="font-bold">Date Of Birth</span>
               <input
-                value={formData.dob as string}
-                onChange={(e) => updateFormData("dob", e.target.value)}
+                value={formData.dateOfBirth as string}
+                onChange={(e) => updateFormData("dateOfBirth", e.target.value)}
                 type="date"
-                name="dob"
+                name="dateOfBirth"
                 required
                 className="input"
               />
