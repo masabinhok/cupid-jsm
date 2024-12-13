@@ -14,6 +14,7 @@ import { useForm } from "../context/FormContext"
 const YourInfo = () => {
 
   const { index, setIndex, handleNext, handlePrevious, isCompleted } = useForm()
+  
 
   const steps = [
     <Welcome />,
@@ -60,7 +61,7 @@ const YourInfo = () => {
                 !isCompleted ? "cursor-not-allowed bg-normal" : "cursor-pointer tranimate"
               )}>
             {
-              index === 7 ? "Submit" : "Next"
+              index === 7 ? "Submit & Find My Match ❤️" : "Next"
             }
           </button>
         </div>
