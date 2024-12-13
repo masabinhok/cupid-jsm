@@ -2,47 +2,74 @@ import { useEffect, useState } from "react";
 import { useForm } from "../../context/FormContext";
 import { defaultPic } from "../../assets";
 
+interface UploadResponse {
+  secure_url: string;
+  [key: string]: any;
+}
+
 const ProfilePic = () => {
   const { formData, updateFormData, setIsCompleted } = useForm();
-  const previewUrl = localStorage.getItem("profilePicture");
-  const [preview, setPreview] = useState<string | null>(previewUrl || defaultPic);
+  const [preview, setPreview] = useState<string | null>(formData.profilePicture || defaultPic);
   const [error, setError] = useState<string | null>(null);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
 
   useEffect(() => {
     setIsCompleted(false);
-  }, []);
+  }, [setIsCompleted]);
 
   useEffect(() => {
-    const { profilePicture } = formData;
-    if (profilePicture) {
-      console.log("Profile picture is set");
+    if (formData.profilePicture) {
       setIsCompleted(true);
     }
-  }, [formData, setIsCompleted]);
+  }, [formData.profilePicture, setIsCompleted]);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      // Validate file type (e.g., only images)
-      const validTypes = ["image/jpeg", "image/png", "image/gif"];
-      if (!validTypes.includes(file.type)) {
-        setError("Please select a valid image file (JPEG, PNG, or GIF)");
-        return;
+    if (!file) return;
+
+    // Validate file type
+    const validTypes = ["image/jpeg", "image/png", "image/gif"];
+    if (!validTypes.includes(file.type)) {
+      setError("Please select a valid image file (JPEG, PNG, or GIF)");
+      return;
+    }
+
+    // Validate file size (Max 5MB)
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      setError("File size should be less than 5MB");
+      return;
+    }
+
+    setError(null); // Clear previous errors
+    setIsUploading(true);
+
+    try {
+      // Prepare the file for upload
+      const imageData = new FormData();
+      imageData.append("file", file);
+      imageData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+      imageData.append("folder", "cupid/profilePics");
+
+      // Upload to Cloudinary
+      const response = await fetch(`${import.meta.env.VITE_CLOUDINARY_BASE_URL}/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, {
+        method: "POST",
+        body: imageData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to upload image");
       }
 
-      // Validate file size (e.g., max 5MB)
-      const maxSize = 5 * 1024 * 1024; // 5MB
-      if (file.size > maxSize) {
-        setError("File size should be less than 5MB");
-        return;
-      }
-
-      setError(null); // Clear errors if validation passes
-      // Create a preview URL and update the formData
-      const previewUrl = URL.createObjectURL(file);
-      setPreview(previewUrl);
-      localStorage.setItem("profilePicture", previewUrl);
-      updateFormData("profilePicture", previewUrl); // Storing preview URL or file name for now
+      const data: UploadResponse = await response.json();
+      updateFormData("profilePicture", data.secure_url); // Update formData with secure URL
+      setPreview(data.secure_url); // Update preview with Cloudinary URL
+      console.log("Image uploaded successfully:", data.secure_url);
+    } catch (err) {
+      console.error("Upload error:", err);
+      setError("An error occurred while uploading the profile picture.");
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -54,7 +81,7 @@ const ProfilePic = () => {
           <div className="flex flex-col items-center gap-4">
             <label
               htmlFor="profilePicture"
-              className="cursor-pointer font-bold text-center"
+              className="cursor-pointer font-bold text-center text-blue-500 hover:underline"
             >
               {preview !== defaultPic ? "Change Profile Picture" : "Upload Your Profile Picture"}
             </label>
@@ -66,14 +93,18 @@ const ProfilePic = () => {
               accept="image/*"
               className="hidden"
             />
-            {preview && (
-              <div className="mt-4">
-                <img
-                  src={preview}
-                  alt="Profile Preview"
-                  className="w-40 h-40 object-cover rounded-full  border-shade-200 border-4"
-                />
-              </div>
+            {isUploading ? (
+              <p className="text-blue-500 text-sm">Uploading...</p>
+            ) : (
+              preview && (
+                <div className="mt-4">
+                  <img
+                    src={preview}
+                    alt="Profile Preview"
+                    className="w-40 h-40 object-cover rounded-full border-shade-200 border-4"
+                  />
+                </div>
+              )
             )}
             {error && <p className="text-red-500 text-sm">{error}</p>}
           </div>
