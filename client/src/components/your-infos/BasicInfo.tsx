@@ -25,7 +25,7 @@ const BasicInfo = () => {
             <label htmlFor="firstName">
               <span className="font-bold">First Name</span>
               <input
-                value={formData.firstName as string}
+                value={formData.firstName ?? ""}
                 onChange={(e) => updateFormData("firstName", e.target.value)}
                 placeholder="Sabin"
                 type="text"
@@ -37,7 +37,7 @@ const BasicInfo = () => {
             <label htmlFor="middleName">
               <span className="font-bold">Middle Name</span>
               <input
-                value={formData.middleName as string}
+                value={formData.middleName ?? ""}
                 onChange={(e) => updateFormData("middleName", e.target.value)}
                 type="text"
                 placeholder="..."
@@ -48,7 +48,7 @@ const BasicInfo = () => {
             <label htmlFor="lastName">
               <span className="font-bold">Last Name</span>
               <input
-                value={formData.lastName as string}
+                value={formData.lastName ?? ""}
                 onChange={(e) => updateFormData("lastName", e.target.value)}
                 placeholder="Shrestha"
                 type="text"
@@ -64,7 +64,7 @@ const BasicInfo = () => {
                 Phone <span className="text-sm">(optional for Cupid's initial phase)</span>
               </span>
               <input
-                value={formData.phone as string}
+                value={formData.phone ?? ""}
                 onChange={(e) => updateFormData("phone", e.target.value)}
                 placeholder="98419837.."
                 type="phone"
@@ -75,7 +75,7 @@ const BasicInfo = () => {
             <label htmlFor="dateOfBirth">
               <span className="font-bold">Date Of Birth</span>
               <input
-                value={formData.dateOfBirth as string}
+                value={formData.dateOfBirth ?? ""}
                 onChange={(e) => updateFormData("dateOfBirth", e.target.value)}
                 type="date"
                 name="dateOfBirth"
@@ -87,7 +87,7 @@ const BasicInfo = () => {
           <label htmlFor="gender">
             <span className="font-bold">Gender</span>
             <select
-              value={formData.gender as string}
+              value={formData.gender ?? ""}
               onChange={(e) => updateFormData("gender", e.target.value)}
               name="gender"
               className="input"
