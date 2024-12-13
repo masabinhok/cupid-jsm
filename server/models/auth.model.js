@@ -52,6 +52,12 @@ const userSchema = new mongoose.Schema(
       },
       ageRange: { min: { type: Number, default: 18 }, max: { type: Number, default: 60 } },
       maxDistance: { type: Number, default: 50, min: 0 },
+      caste: [{
+        type: String,
+      }],
+      interests: [{
+        type: String,
+      }]
     },
     socialLinks: {
       facebook: { type: String },
