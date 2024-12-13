@@ -34,9 +34,9 @@ const Socials = () => {
       }
 
       // Prepend `https://` if missing
-      const formattedLink = input.startsWith("http://") || input.startsWith("https://")
+      const formattedLink = input.startsWith("http://www.") || input.startsWith("https://www.")
         ? input
-        : `https://${input}`;
+        : `https://www.${input}`;
 
       // Update formData
       updateFormData("socialLinks", [...(formData.socialLinks || []), formattedLink]);

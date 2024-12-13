@@ -50,8 +50,8 @@ const Finish = () => {
               interests.map((interest, index) => (
                 <span key={index}> {index > 0 ? ", " : ""} <span className="font-bold">{interest}</span></span>
               )) : " exploring new things"}.
-            You’re on the lookout for a <span className="font-bold">{preferenceGender}</span> between
-            <span className="font-bold">{preferenceAgeRange?.min}</span> and
+            You’re on the lookout for a <span className="font-bold">{preferenceGender}</span> between {' '}
+            <span className="font-bold">{preferenceAgeRange?.min}</span> and{" "}
             <span className="font-bold">{preferenceAgeRange?.max}</span> years, with similar interests such as
             {preferenceInterest?.length ?
               preferenceInterest.map((interest, index) => (
@@ -64,7 +64,7 @@ const Finish = () => {
             Oh, and a special preference for someone who is
             {preferenceCaste?.length ?
               preferenceCaste.map((caste, index) => (
-                <span key={index}> {index > 0 ? "or" : ""} <span className="font-bold">{caste}</span></span>
+                <span key={index}> {index > 0 ? "," : ""} <span className="font-bold">{caste}</span></span>
               )) : " any background"}.
           </p>
 
@@ -86,11 +86,11 @@ const Finish = () => {
 
           {socialLinks?.length && (
             <div className="text-gray-700 text-base">
-              <p className="mb-2">If anyone wanna connect socially, </p>
+              <p className="mb-2 font-bold">Your Socials: </p>
               {socialLinks?.map((link, index) => (
                 <p key={index} className="w-fit  font-bold inline mr-5 ">
                   <Link className="text-shade-500  w-fit uppercase text-sm" to={link} target="_blank">
-                    {(link.toString().split('.')[0]).split('https://')}
+                    {link.toString().split('.')[1]}
                   </Link>
                 </p>
               ))}

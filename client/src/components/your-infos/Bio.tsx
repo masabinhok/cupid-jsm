@@ -82,7 +82,7 @@ const Bio = () => {
               {
                 error && <p className="text-alert text-center text-sm">{error}</p>
               }
-              <div className="mt-2 flex gap-2 flex-wrap">
+              <div className=" flex gap-2 flex-wrap">
                 {formData.interests?.map((interest, index) => (
                   <div
                     key={interest + index}

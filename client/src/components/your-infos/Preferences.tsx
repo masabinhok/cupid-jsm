@@ -177,7 +177,7 @@ const Preferences = () => {
             {casteError && <p className="text-alert text-sm">{casteError}</p>}
             <div className="flex gap-2 flex-wrap mb-2">
               {formData.preferenceCaste?.map((caste, index) => (
-                <div key={caste + index} className="flex items-center gap-2 bg-softWhite rounded-lg px-2 py-1">
+                <div key={caste + index} className="flex items-center gap-2 text-sm bg-softWhite rounded-lg px-2 py-1">
                   <p>{caste}</p>
                   <button
                     type="button"
@@ -201,7 +201,7 @@ const Preferences = () => {
             {interestError && <p className="text-alert text-sm">{interestError}</p>}
             <div className="flex gap-2 flex-wrap mb-2">
               {formData.preferenceInterest?.map((interest, index) => (
-                <div key={interest + index} className="flex items-center gap-2 bg-softWhite rounded-lg px-2 py-1">
+                <div key={interest + index} className="flex items-center gap-2 bg-softWhite text-sm rounded-lg px-2 py-1">
                   <p>{interest}</p>
                   <button
                     type="button"

@@ -66,7 +66,7 @@ const Location = () => {
         <h2 className="text-4xl font-bold text-romanticRed mb-5">Location</h2>
         <form className="w-full flex-center flex-col">
           <div className="flex-center gap-4">
-            <label htmlFor="city" className="font-bold">
+            <label htmlFor="city" >
               City
               <input
                 type="text"
@@ -85,7 +85,7 @@ const Location = () => {
             </label>
 
 
-            <label htmlFor="country" className="font-bold">
+            <label htmlFor="country">
               Country
               <input
                 type="text"
@@ -107,7 +107,7 @@ const Location = () => {
           <button
             type="button"
             onClick={handleGeolocation}
-            className="btn btn-primary"
+            className="font-bold text-normal text-sm"
           >
             {loading ? "Detecting..." : "Use My Current Location"}
           </button>
