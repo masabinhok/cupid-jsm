@@ -40,8 +40,8 @@ const userSchema = new mongoose.Schema(
       city: { type: String },
       country: { type: String },
       coordinates: {
-        type: { type: String, enum: ["Point"], required: true },
-        coordinates: { type: [Number], required: true, index: "2dsphere" },
+        type: { type: String, enum: ["Point"],  },
+        coordinates: { type: [Number], index: "2dsphere" },
       },
     },
     preference: {
