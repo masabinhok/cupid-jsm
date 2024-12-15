@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema(
         message: "User must be at least 18 years old",
       },
     },
-    profilePicture: { type: String, default: "default.jpg" },
+    profilePicture: { type: String, default: null },
     bio: { type: String, maxlength: 500 },
     interests: [{ type: String, maxlength: 50 }],
     location: {
