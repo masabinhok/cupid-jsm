@@ -28,6 +28,11 @@
   }
 }
 
+.heart-shape {
+  clip-path: path("M50 15 C35 -10, 0 -10, 0 30 C0 60, 50 90, 50 90 C50 90, 100 60, 100 30 C100 -10, 65 -10, 50 15 Z"
+);
+}
+
 body {
   font-family: 'Space Grotesk', sans-serif;
   background-color: #ffe5ec;

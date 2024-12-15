@@ -18,8 +18,12 @@ const Home = () => {
         backgroundRepeat: "no-repeat",
       }}>
         <img className="fixed top-0 left-0 w-36 h-36" src={logo} alt="cupidLogo" />
-        <Link to="/profile">
-          <img className="fixed top-5 right-5 border-shade-500 border-2 w-10 h-10 rounded-full hover:border-shade-100 tranimate" src={user?.profilePicture || defaultPic} alt="cupidLogo" />
+        <Link to='/profile'>
+          <img
+            className="fixed top-5 right-5 w-36 h-36 heart-shape object-cover  tranimate"
+            src={user?.profilePicture ? user?.profilePicture : defaultPic}
+            alt="cupidLogo"
+          />
         </Link>
         <div className="p-10 max-md:p-0">
           <h2 className="font-bold text-6xl max-md:text-4xl">Find Love, Simplified.</h2>
@@ -36,10 +40,7 @@ const Home = () => {
               {user ? "Find Love" : "Authenticate now"}
             </button>
           </div>
-
-
         </div>
-
       </section>
 
     </main >

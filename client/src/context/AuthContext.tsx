@@ -22,6 +22,7 @@ interface IUser {
   preferenceCaste?: string[] | null;
   preferenceInterest?: string[] | null;
   socialLinks?: string[] | null;
+  _id: string;
 }
 
 interface AuthContextType {

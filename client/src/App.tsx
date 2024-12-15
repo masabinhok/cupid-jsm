@@ -6,30 +6,36 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
 import YourInfo from "./pages/YourInfo";
 import { FormProvider } from "./context/FormContext";
+import Profile from "./pages/Profile";
+import OtherProfile from "./pages/OtherProfile";
 
 export default function App() {
   return (
     <Router>
       <AuthProviderWithLocation>
-        <Routes>
-          {/* Public Route */}
-          <Route path="/auth" element={<Auth />} />
+        <FormProvider>
+          <Routes>
+            {/* Public Route */}
+            <Route path="/auth" element={<Auth />} />
 
-          {/* Protected Routes */}
-          <Route path="/" element={<Home />} />
-          <Route element={<ProtectedRoute />}>
-            <Route
-              path="/your-info"
-              element={
-                <FormProvider>
+            {/* Protected Routes */}
+            <Route path="/" element={<Home />} />
+            <Route element={<ProtectedRoute />}>
+              <Route
+                path="/your-info"
+                element={
+
                   <YourInfo />
-                </FormProvider>
-              }
-            />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
-        </Routes>
+
+                }
+              />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/:id" element={<OtherProfile />} />
+            </Route>
+          </Routes>
+        </FormProvider>
       </AuthProviderWithLocation>
-    </Router>
+    </Router >
   );
 }

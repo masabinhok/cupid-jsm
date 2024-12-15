@@ -35,6 +35,7 @@ interface FormContextProps {
   handleNext: () => void;
   setIndex: (value: number) => void;
   loading: boolean;
+  submitForm: () => void;
 }
 
 export const useForm = () => {
@@ -117,31 +118,34 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     }
   };
 
+  const submitForm = async () => {
+    try {
+      setLoading(true);
+      await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/userinfo`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          email: user?.email,
+        }),
+      }).then((res) => res.json()).then((data) => {
+        console.log(data);
+      })
+    } catch (error) {
+      console.error(error);
+    } finally {
+      localStorage.removeItem("currentStep");
+      console.log("Form submitted successfully");
+      setLoading(false);
+      navigate("/dashboard");
+    }
+  }
+
   const handleNext = async () => {
     if (index === 7) {
-      try {
-        setLoading(true);
-        await fetch(`${import.meta.env.VITE_SERVER_URL}/auth/userinfo`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...formData,
-            email: user?.email,
-          }),
-        }).then((res) => res.json()).then((data) => {
-          console.log(data);
-        })
-      } catch (error) {
-        console.error(error);
-      } finally {
-        localStorage.removeItem("currentStep");
-        localStorage.removeItem("formData");
-        console.log("Form submitted successfully");
-        setLoading(false);
-        navigate("/dashboard");
-      }
+      submitForm();
     }
     if (index < 7) {
       setIndex(index + 1);
@@ -159,7 +163,8 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         handleNext,
         handlePrevious,
         setIndex,
-        loading
+        loading,
+        submitForm,
       }}
     >
       {children}
