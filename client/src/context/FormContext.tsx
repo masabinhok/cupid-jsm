@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
@@ -25,6 +25,8 @@ interface IFormData {
   socialLinks?: string[] | null;
 }
 
+
+
 interface FormContextProps {
   formData: IFormData;
   updateFormData: (field: keyof IFormData, value: any) => void;
@@ -36,6 +38,7 @@ interface FormContextProps {
   setIndex: (value: number) => void;
   loading: boolean;
   submitForm: () => void;
+  isChanged: boolean;
 }
 
 export const useForm = () => {
@@ -88,6 +91,20 @@ export const FormProvider = ({ children }: FormProviderProps) => {
   const [index, setIndex] = useState(savedStep ? Number(savedStep) : 0);
   const [isCompleted, setIsCompleted] = useState(false);
   const navigate = useNavigate();
+  const [isChanged, setIsChanged] = useState<boolean>(false);
+
+  const prevFormData = useRef<IFormData | null>(null);
+
+
+  useEffect(() => {
+    if (prevFormData.current && JSON.stringify(prevFormData.current) !== JSON.stringify(formData)) {
+      setIsChanged(true);
+    } else {
+      setIsChanged(false);
+    }
+    prevFormData.current = formData;
+
+  }, [formData]);
 
   useEffect(() => {
     localStorage.setItem("formData", JSON.stringify(formData));
@@ -165,6 +182,7 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         setIndex,
         loading,
         submitForm,
+        isChanged
       }}
     >
       {children}

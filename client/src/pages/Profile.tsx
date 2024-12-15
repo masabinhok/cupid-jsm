@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BasicInfo from "../components/your-infos/BasicInfo";
 import ProfilePic from "../components/your-infos/ProfilePic";
 import Location from "../components/your-infos/Location";
@@ -8,11 +8,13 @@ import Socials from "../components/your-infos/Socials";
 import Logout from "../components/your-infos/Logout";
 import { useForm } from "../context/FormContext";
 import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('basicInfo');
-  const { submitForm } = useForm();
+  const { submitForm, isChanged, formData } = useForm();
+
   const profileTabs = [
     {
       tag: 'basicInfo',
@@ -63,13 +65,18 @@ const Profile = () => {
         return <BasicInfo />;
     }
   }
+  const navigate = useNavigate();
   return (
     <main className="main">
       <div className="flex max-w-[800px] w-full  flex-col p-10 min-h-screen">
         <div className="flex-between"><h1 className="text-romanticRed text-4xl font-bold">Profile</h1>
-          <button onClick={submitForm} className={clsx("bg-softWhite text-romanticRed rounded-xl px-6 py-2 hover:opacity-80", {
+          <button onClick={
+            isChanged ? () => submitForm() : () => navigate('/dashboard')
+          } className={clsx("bg-softWhite text-romanticRed rounded-xl px-6 py-2 hover:opacity-80", {
             "hidden": activeTab === 'logout'
-          })}>Save</button>
+          })}>
+            {isChanged ? 'Save Changes' : 'Dashboard'}
+          </button>
         </div>
 
         <div className="flex gap-10 mt-10">
