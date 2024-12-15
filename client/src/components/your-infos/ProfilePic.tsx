@@ -7,7 +7,6 @@ interface DetectFaceResponse {
   message: "success" | "error";
 }
 
-
 const ProfilePic = () => {
   const { formData, updateFormData, setIsCompleted } = useForm();
   const [preview, setPreview] = useState<string | null>(formData.profilePicture || defaultPic);
@@ -100,7 +99,7 @@ const ProfilePic = () => {
                   <img
                     src={preview}
                     alt="Profile Preview"
-                    className="w-80 h-96 object-cover border-shade-200 border-4"
+                    className="w-80 h-96 object-cover border-shade-500 border-4 rounded-xl"
                   />
                 </div>
               )
