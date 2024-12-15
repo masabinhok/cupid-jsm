@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useForm } from "../../context/FormContext";
 import { defaultPic } from "../../assets";
 
-interface UploadResponse {
-  secure_url: string;
-  [key: string]: any;
+interface DetectFaceResponse {
+  url: string;
+  message: "success" | "error";
 }
+
 
 const ProfilePic = () => {
   const { formData, updateFormData, setIsCompleted } = useForm();
@@ -45,29 +46,27 @@ const ProfilePic = () => {
     setIsUploading(true);
 
     try {
-      // Prepare the file for upload
-      const imageData = new FormData();
-      imageData.append("file", file);
-      imageData.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
-      imageData.append("folder", "cupid/profilePics");
+      // Send file to backend for face detection
+      const faceDetectionFormData = new FormData();
+      faceDetectionFormData.append("image", file);
 
-      // Upload to Cloudinary
-      const response = await fetch(`${import.meta.env.VITE_CLOUDINARY_BASE_URL}/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, {
+      const detectResponse = await fetch("http://localhost:5000/detect-face", {
         method: "POST",
-        body: imageData,
+        body: faceDetectionFormData,
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to upload image");
+      if (!detectResponse.ok) {
+        throw new Error("Face detection failed");
       }
 
-      const data: UploadResponse = await response.json();
-      updateFormData("profilePicture", data.secure_url); // Update formData with secure URL
-      setPreview(data.secure_url); // Update preview with Cloudinary URL
-      console.log("Image uploaded successfully:", data.secure_url);
+      const detectData: DetectFaceResponse = await detectResponse.json();
+      const { url, message } = detectData;
+      setError(message);
+      updateFormData("profilePicture", url);
+      setPreview(url);
     } catch (err) {
-      console.error("Upload error:", err);
-      setError("An error occurred while uploading the profile picture.");
+      console.error("Error:", err);
+      setError("An error occurred while processing and uploading the profile picture.");
     } finally {
       setIsUploading(false);
     }
@@ -94,14 +93,14 @@ const ProfilePic = () => {
               className="hidden"
             />
             {isUploading ? (
-              <p className="text-blue-500 text-sm">Uploading...</p>
+              <p className="text-blue-500 text-sm">Processing...</p>
             ) : (
               preview && (
                 <div className="mt-4">
                   <img
                     src={preview}
                     alt="Profile Preview"
-                    className="w-80 h-96 object-cover  border-shade-200 border-4"
+                    className="w-80 h-96 object-cover border-shade-200 border-4"
                   />
                 </div>
               )

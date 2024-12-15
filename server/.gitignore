@@ -5,3 +5,4 @@ dist
 *.log
 combined.log
 error.log
+uploads
