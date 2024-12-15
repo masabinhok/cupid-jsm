@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "../../context/FormContext";
+import { Link } from "react-router-dom";
+import { socialMedia } from "../../assets";
 
 const Socials = () => {
   const { formData, updateFormData, setIsCompleted } = useForm();
@@ -54,6 +56,7 @@ const Socials = () => {
     <section className="max-w-[600px] my-5 w-full">
       <div className="flex-center flex-col h-full w-full">
         <h2 className="text-4xl font-bold text-romanticRed mb-5">Socials</h2>
+        <img src={socialMedia} alt="socialCupid" className="rounded-xl h-40 bg-auto mb-10" />
         <form className="w-full">
           <label htmlFor="socialLinks" className="w-full">
             <span className="font-bold">Add a Social Link (optional)</span>
@@ -68,19 +71,19 @@ const Socials = () => {
             {error && <p className="text-alert text-sm mt-1">{error}</p>}
           </label>
           <div className="mt-3 flex gap-2 flex-wrap">
+
+
+
             {formData.socialLinks?.map((link, index) => (
               <div
                 key={`${link}-${index}`}
                 className="flex items-center gap-2 bg-softWhite rounded-lg px-2 py-1 mb-2"
               >
-                <a
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="break-words max-w-[300px] text-blue-500 underline"
-                >
-                  {link}
-                </a>
+                <p key={index} className="w-fit  font-bold inline ">
+                  <Link className="text-shade-500  w-fit uppercase text-sm" to={link} target="_blank">
+                    {link.toString().split('.')[1]}
+                  </Link>
+                </p>
                 <button
                   type="button"
                   className="text-red-500 font-bold"
