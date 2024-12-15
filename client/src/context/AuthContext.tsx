@@ -2,6 +2,26 @@ import { createContext, useState, useEffect, ReactNode, useContext } from "react
 
 interface IUser {
   email: string;
+  firstName: string | null;
+  lastName: string | null;
+  dateOfBirth: string | null;
+  gender: string | null;
+  middleName?: string | null;
+  profilePicture: string | null;
+  phone?: string | null;
+  bio?: string | null;
+  interests?: string[] | null;
+  location: {
+    city: string | null;
+    country: string | null;
+    coordinates: [number, number] | null;
+  }
+  preferenceGender?: string | null;
+  preferenceAgeRange?: { min: number; max: number } | null;
+  preferenceDistance?: number | null;
+  preferenceCaste?: string[] | null;
+  preferenceInterest?: string[] | null;
+  socialLinks?: string[] | null;
 }
 
 interface AuthContextType {
@@ -40,7 +60,7 @@ export const AuthProvider = ({ children, location }: AuthProviderProps) => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const publicRoutes = ["/auth", ];
+    const publicRoutes = ["/auth",];
 
     if (publicRoutes.includes(location.pathname)) {
       setIsSessionChecked(true);
