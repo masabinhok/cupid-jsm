@@ -78,10 +78,8 @@ const Profile = () => {
         <div className="flex-between bg-white p-5 rounded-xl"><h1 className="text-romanticRed text-4xl font-bold">Profile</h1>
           <button onClick={
             isChanged ? () => submitForm() : () => navigate('/dashboard')
-          } className={clsx("bg-softWhite text-romanticRed rounded-xl px-6 py-2 hover:opacity-80", {
-            "hidden": activeTab === 'logout'
-          })}>
-            {isChanged ? 'Save Changes' : 'Dashboard'}
+          } className={clsx("bg-softWhite text-romanticRed rounded-xl px-6 py-2 hover:opacity-80")}>
+            {isChanged && activeTab !== 'logout' ? 'Save Changes' : 'Dashboard'}
           </button>
         </div>
 
