@@ -7,6 +7,7 @@ import Preferences from "../components/your-infos/Preferences";
 import Socials from "../components/your-infos/Socials";
 import Logout from "../components/your-infos/Logout";
 import { useForm } from "../context/FormContext";
+import clsx from "clsx";
 
 
 const Profile = () => {
@@ -66,7 +67,9 @@ const Profile = () => {
     <main className="main">
       <div className="flex max-w-[800px] w-full  flex-col p-10 min-h-screen">
         <div className="flex-between"><h1 className="text-romanticRed text-4xl font-bold">Profile</h1>
-          <button onClick={submitForm} className="bg-softWhite text-romanticRed rounded-xl px-6 py-2 hover:opacity-80">Save</button>
+          <button onClick={submitForm} className={clsx("bg-softWhite text-romanticRed rounded-xl px-6 py-2 hover:opacity-80", {
+            "hidden": activeTab === 'logout'
+          })}>Save</button>
         </div>
 
         <div className="flex gap-10 mt-10">
