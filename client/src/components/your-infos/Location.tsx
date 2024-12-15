@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "../../context/FormContext";
+import { location } from "../../assets";
 
 const Location = () => {
   const { formData, updateFormData, setIsCompleted } = useForm();
@@ -61,49 +62,49 @@ const Location = () => {
   };
 
   return (
-    <section className="max-w-[800px] my-5">
-      <div className="flex-center flex-col h-full">
+    <section className="max-w-[800px] my-5 w-full">
+      <div className="flex-center flex-col h-full w-full">
         <h2 className="text-4xl font-bold text-romanticRed mb-5">Location</h2>
+        <img src={location} alt="locationCupid" className="h-40 w-auto rounded-xl" />
         <form className="w-full flex-center flex-col">
-          <div className="flex-center gap-4">
-            <label htmlFor="city" >
-              City
-              <input
-                type="text"
-                id="city"
-                name="city"
-                placeholder="Enter your city"
-                value={formData.location?.city || ""}
-                onChange={(e) =>
-                  updateFormData("location", {
-                    ...formData.location,
-                    city: e.target.value,
-                  })
-                }
-                className="input"
-              />
-            </label>
+
+          <label htmlFor="city" className="w-full" >
+            City
+            <input
+              type="text"
+              id="city"
+              name="city"
+              placeholder="Enter your city"
+              value={formData.location?.city || ""}
+              onChange={(e) =>
+                updateFormData("location", {
+                  ...formData.location,
+                  city: e.target.value,
+                })
+              }
+              className="input"
+            />
+          </label>
 
 
-            <label htmlFor="country">
-              Country
-              <input
-                type="text"
-                id="country"
-                name="country"
-                placeholder="Enter your country"
-                value={formData.location?.country || ""}
-                onChange={(e) =>
-                  updateFormData("location", {
-                    ...formData.location,
-                    country: e.target.value,
-                  })
-                }
-                className="input"
-              />
-            </label>
+          <label htmlFor="country" className="w-full">
+            Country
+            <input
+              type="text"
+              id="country"
+              name="country"
+              placeholder="Enter your country"
+              value={formData.location?.country || ""}
+              onChange={(e) =>
+                updateFormData("location", {
+                  ...formData.location,
+                  country: e.target.value,
+                })
+              }
+              className="input"
+            />
+          </label>
 
-          </div>
           <button
             type="button"
             onClick={handleGeolocation}
