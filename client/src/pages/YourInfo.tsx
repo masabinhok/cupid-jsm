@@ -11,6 +11,7 @@ import clsx from "clsx"
 import { useForm } from "../context/FormContext"
 import { useAuth } from "../context/AuthContext"
 import { useNavigate } from "react-router-dom"
+import { profileBg } from "../assets"
 
 
 const YourInfo = () => {
@@ -53,7 +54,12 @@ const YourInfo = () => {
     }
   })
   return (
-    <main className="main">
+    <main className="main" style={{
+      backgroundImage: `url(${profileBg})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    }}>
       <section className="max-w-[600px] w-full flex-center flex-col p-10">
         {renderForm()}
         <div className="flex-between w-full">

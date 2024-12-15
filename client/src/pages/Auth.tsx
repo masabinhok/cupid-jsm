@@ -2,6 +2,7 @@ import { useState } from "react";
 import OtpBox from "../components/OtpBox";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { authBg } from "../assets";
 
 const Auth = () => {
   const [email, setEmail] = useState<string>("");
@@ -43,7 +44,12 @@ const Auth = () => {
   }
 
   return (
-    <main className="main relative">
+    <main className="main relative" style={{
+      backgroundImage: `url(${authBg})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    }}>
       <section className="p-5 flex-center flex-col max-w-[400px] w-full">
         <h2 className="text-2xl">Welcome to Cupid 💘</h2>
         <form onSubmit={(e) => handleSubmit(e)} className="mt-5 w-full">

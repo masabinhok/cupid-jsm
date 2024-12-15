@@ -3,7 +3,7 @@ import { useForm } from "../../context/FormContext";
 
 const Preferences = () => {
   const { formData, updateFormData, setIsCompleted } = useForm();
-  const [casteError, setCasteError] = useState<string | null>(null);
+  // const [casteError, setCasteError] = useState<string | null>(null);
   const [ageError, setAgeError] = useState<string | null>(null);
   const [interestError, setInterestError] = useState<string | null>(null);
 
@@ -14,7 +14,7 @@ const Preferences = () => {
 
   // Validate and mark the section as complete
   useEffect(() => {
-    const { preferenceAgeRange, preferenceDistance, preferenceGender, preferenceCaste } = formData;
+    const { preferenceAgeRange, preferenceDistance, preferenceGender } = formData;
 
     if (!preferenceAgeRange?.min || !preferenceAgeRange?.max) {
       setIsCompleted(false);
@@ -33,7 +33,6 @@ const Preferences = () => {
     if (
       preferenceDistance &&
       preferenceGender &&
-      preferenceCaste?.length &&
       minAge >= 18 &&
       maxAge <= 99 &&
       minAge < maxAge
@@ -51,26 +50,26 @@ const Preferences = () => {
     formData.preferenceCaste,
   ]);
 
-  const handleCaste = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const input = (e.currentTarget as HTMLInputElement).value.trim();
+  // const handleCaste = (e: React.KeyboardEvent) => {
+  //   if (e.key === "Enter") {
+  //     e.preventDefault();
+  //     const input = (e.currentTarget as HTMLInputElement).value.trim();
 
-      if (!input) {
-        setCasteError("Please enter a valid caste or type 'Any'.");
-        return;
-      }
+  //     if (!input) {
+  //       setCasteError("Please enter a valid caste or type 'Any'.");
+  //       return;
+  //     }
 
-      if (formData.preferenceCaste?.includes(input)) {
-        setCasteError("Caste already exists.");
-        return;
-      }
+  //     if (formData.preferenceCaste?.includes(input)) {
+  //       setCasteError("Caste already exists.");
+  //       return;
+  //     }
 
-      updateFormData("preferenceCaste", [...(formData.preferenceCaste || []), input]);
-      (e.currentTarget as HTMLInputElement).value = "";
-      setCasteError(null);
-    }
-  };
+  //     updateFormData("preferenceCaste", [...(formData.preferenceCaste || []), input]);
+  //     (e.currentTarget as HTMLInputElement).value = "";
+  //     setCasteError(null);
+  //   }
+  // };
 
   const handleInterest = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -93,10 +92,10 @@ const Preferences = () => {
     }
   };
 
-  const removeCaste = (casteToRemove: string) => {
-    const updatedCaste = formData.preferenceCaste?.filter((caste) => caste !== casteToRemove);
-    updateFormData("preferenceCaste", updatedCaste);
-  };
+  // const removeCaste = (casteToRemove: string) => {
+  //   const updatedCaste = formData.preferenceCaste?.filter((caste) => caste !== casteToRemove);
+  //   updateFormData("preferenceCaste", updatedCaste);
+  // };
 
   const removeInterest = (interestToRemove: string) => {
     const updatedInterests = formData.preferenceInterest?.filter((interest) => interest !== interestToRemove);

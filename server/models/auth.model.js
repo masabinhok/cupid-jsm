@@ -60,9 +60,9 @@ const userSchema = new mongoose.Schema(
       }]
     },
     socialLinks: [{type: String}],
-    matches: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", unique: true }],
-    likesSent: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", unique: true }],
-    likesReceived: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", unique: true }],
+    matches: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", }],
+    likesSent: [{ type: mongoose.Schema.Types.ObjectId, ref: "User",}],
+    likesReceived: [{ type: mongoose.Schema.Types.ObjectId, ref: "User",}],
     messages: [{ type: mongoose.Schema.Types.ObjectId, ref: "Message" }],
     verified: { type: Boolean, default: false },
     lastActive: { type: Date, default: Date.now },

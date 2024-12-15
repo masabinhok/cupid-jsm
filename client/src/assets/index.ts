@@ -12,7 +12,8 @@ import cupidSpace from './cupidSpace.png'
 import dashboard from './dashboard.png'
 import profileBg from './profileBg.png'
 import dashboardBg from './dashboardBg.png';
+import authBg from './authBg.png'
 
-export {defaultPic, profileBg, dashboardBg, heroBg, logo, goodBye,location, socialMedia, logosm, cupidSpace, cupidStore, cupidReserve, cupidConnect, dashboard
+export {defaultPic, profileBg, dashboardBg, heroBg, logo, goodBye,location, socialMedia, logosm, cupidSpace, cupidStore, cupidReserve, cupidConnect, dashboard, authBg
 };
 
