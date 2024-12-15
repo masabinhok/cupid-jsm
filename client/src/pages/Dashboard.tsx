@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { IUser, useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { dashboardBg, defaultPic } from "../assets";
+import Loading from "../components/Loading";
+import { UserCarousel } from "@/components/UserCarousel";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -11,6 +13,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     try {
+      setLoading(true);
       const fetchUsers = async () => {
         const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/dashboard`, {
           method: "GET",
@@ -31,6 +34,8 @@ const Dashboard = () => {
     }
     catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }, [])
 
@@ -44,6 +49,10 @@ const Dashboard = () => {
     }
   }, [user, navigate]);
 
+  if (loading) {
+    return <Loading />
+  }
+
   return (
     <main className="main h-screen" style={{
       backgroundImage: `url(${dashboardBg})`,
@@ -51,18 +60,11 @@ const Dashboard = () => {
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
     }}>
-      <div className="flex-center flex-col gap-10">
+      <div className="flex-center h-[600px] w-full">
         {
-          users?.map((user) => (
-            <div key={user._id} className="flex-center flex-col bg-softWhite rounded-xl max-w-[400px] p-10">
-              <img src={user.profilePicture || defaultPic} alt="profile" className="rounded-full w-20 h-20" />
-              <h2>{user.firstName} {user.lastName}</h2>
-              <p>{user.bio}</p>
-            </div>
-          ))
+          users ? <UserCarousel users={users} /> : <p>No match found</p>
         }
       </div>
-
     </main>
   );
 };

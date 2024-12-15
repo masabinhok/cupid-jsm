@@ -42,3 +42,9 @@ body {
   background-color: #ffe5ec;
   color: #fb6f92;
 }
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
