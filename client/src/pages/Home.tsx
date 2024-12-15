@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { defaultPic, heroBg, logo } from "../assets";
 import { useAuth } from "../context/AuthContext";
 
-
 const Home = () => {
   const { user } = useAuth();
   console.log(user)
@@ -17,13 +16,8 @@ const Home = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}>
-        <img className="fixed top-0 left-0 w-36 h-36" src={logo} alt="cupidLogo" />
-        <Link to='/profile'>
-          <img
-            className="fixed top-5 right-5 w-36 h-36 heart-shape object-cover  tranimate"
-            src={user?.profilePicture ? user?.profilePicture : defaultPic}
-            alt="cupidLogo"
-          />
+        <Link to="/">
+          <img className="fixed top-0 left-5 w-36 h-36" src={logo} alt="cupidLogo" />
         </Link>
         <div className="p-10 max-md:p-0">
           <h2 className="font-bold text-6xl max-md:text-4xl">Find Love, Simplified.</h2>
@@ -37,12 +31,11 @@ const Home = () => {
             <button onClick={
               user ? () => navigate('/dashboard') : () => navigate('/auth')
             } className="bg-shade-500 w-fit hover:opacity-80 shadow-sm shadow-normal  rounded-xl px-10 py-2 tranimate ">
-              {user ? "Find Love" : "Authenticate now"}
+              {user ? "Let's Cupidibi" : "Authenticate now"}
             </button>
           </div>
         </div>
       </section>
-
     </main >
   );
 };
