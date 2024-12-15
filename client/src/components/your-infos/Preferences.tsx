@@ -153,7 +153,7 @@ const Preferences = () => {
           </div>
           {ageError && <p className="text-alert text-center text-sm">{ageError}</p>}
           <label htmlFor="preferenceGender">
-            <span className="font-bold">Gender</span>
+            <span className="font-bold">Preferred Gender</span>
             <select
               value={formData.preferenceGender ?? ""}
               onChange={(e) => updateFormData("preferenceGender", e.target.value)}
