@@ -14,7 +14,7 @@ const Logout = () => {
   };
 
   return (
-    <section className="max-w-[600px]  mx-auto w-full text-center  rounded-xl p-8">
+    <section className="max-w-[600px]  mx-auto w-full text-center  rounded-xl p-8 pt-0">
       <div className="flex flex-col items-center relative">
         <h2 className="text-4xl font-bold text-romanticRed mb-3">
           Logout
