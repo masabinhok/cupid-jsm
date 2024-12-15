@@ -99,7 +99,7 @@ const ProfilePic = () => {
                   <img
                     src={preview}
                     alt="Profile Preview"
-                    className="w-80 h-96 object-cover border-shade-500 border-4 rounded-xl"
+                    className="w-56 h-72 object-cover border-shade-500 border-4 rounded-xl"
                   />
                 </div>
               )

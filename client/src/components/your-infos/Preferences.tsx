@@ -166,7 +166,7 @@ const Preferences = () => {
               <option value="Other">Other</option>
             </select>
           </label>
-          <label htmlFor="preferenceCaste">
+          {/* <label htmlFor="preferenceCaste">
             <span className="font-bold">Preferred Caste</span>
             <input
               className="input"
@@ -189,7 +189,7 @@ const Preferences = () => {
                 </div>
               ))}
             </div>
-          </label>
+          </label> */}
           <label htmlFor="preferenceInterest">
             <span className="font-bold">Preferred Interest</span>
             <input

@@ -16,7 +16,7 @@
   }
 
   .main {
-    @apply min-h-screen flex-center flex-col w-screen
+    @apply min-h-screen flex-center flex-col
   }
 
   .error {
@@ -26,11 +26,15 @@
   .input {
     @apply border-shade-200 outline-shade-100 border-2 tranimate bg-shade-100 rounded-xl my-2 px-3 py-2 w-full
   }
+
+  .h5 {
+    @apply text-[16px] leading-[24px] font-semibold;
+  }
 }
 
 .heart-shape {
   clip-path: path("M50 15 C35 -10, 0 -10, 0 30 C0 60, 50 90, 50 90 C50 90, 100 60, 100 30 C100 -10, 65 -10, 50 15 Z"
-);
+    );
 }
 
 body {

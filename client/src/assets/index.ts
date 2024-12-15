@@ -4,7 +4,14 @@ import logo from './logo.png';
 import goodBye from './goodbye.png';
 import location from './location.png'
 import socialMedia from  './socialMedia.png'
+import logosm from './logosm.png'
+import cupidStore from './cupidStore.png'
+import cupidReserve from './cupidreserve.png'
+import cupidConnect from './cupidconnect.png'
+import cupidSpace from './cupidSpace.png'
+import dashboard from './dashboard.png'
+import profileBg from './profileBg.png'
 
-export {defaultPic, heroBg, logo, goodBye,location, socialMedia
+export {defaultPic, profileBg,  heroBg, logo, goodBye,location, socialMedia, logosm, cupidSpace, cupidStore, cupidReserve, cupidConnect, dashboard
 };
 

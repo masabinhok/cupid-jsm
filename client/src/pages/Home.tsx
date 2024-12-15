@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { defaultPic, heroBg, logo } from "../assets";
+import {  heroBg, logo } from "../assets";
 import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
