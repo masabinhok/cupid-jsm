@@ -9,11 +9,21 @@ import Socials from "../components/your-infos/Socials"
 import Finish from "../components/your-infos/Finish"
 import clsx from "clsx"
 import { useForm } from "../context/FormContext"
+import { useAuth } from "../context/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 
 const YourInfo = () => {
 
   const { index, setIndex, handleNext, handlePrevious, isCompleted, loading } = useForm()
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user?.firstName) {
+      navigate('/dashboard')
+    }
+  })
 
 
   const steps = [

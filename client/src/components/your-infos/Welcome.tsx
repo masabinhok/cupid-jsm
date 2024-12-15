@@ -7,7 +7,7 @@ const Welcome = () => {
   return (
     <section className="max-w-[800px] h-[500px]">
       <div className="flex-center flex-col h-full">
-        <h1 className="text-4xl font-bold text-romanticRed">Welcome to Cupid.</h1>
+        <h1 className="text-4xl font-bold text-romanticRed text-center">Oh, lovie! you need a profile first!</h1>
         <p className="text-center mt-4">
           Let’s tailor your profile to ensure an unforgettable and personalized experience. Share a few details to get started.
         </p>
