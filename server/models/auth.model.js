@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema(
       country: { type: String },
       coordinates: {
         type: { type: String, enum: ["Point"],  },
-        coordinates: { type: [Number], index: "2dsphere" },
+        coordinates: { type: [Number],},
       },
     },
     preference: {
@@ -75,12 +75,15 @@ const userSchema = new mongoose.Schema(
         validator: (value) => !value || validator.isMobilePhone(value, "any"),
         message: "{VALUE} is not a valid phone number",
       },
-      index: true,
     },
   },
   { timestamps: true }
 );
 
+
+
 const User = mongoose.model("User", userSchema);
+
+
 
 export default User;
