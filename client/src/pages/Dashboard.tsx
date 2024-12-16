@@ -62,7 +62,7 @@ const Dashboard = () => {
     }}>
       <div className="flex-center h-[600px] w-full">
         {
-          users ? <UserCarousel users={users} /> : <p>No match found</p>
+          users?.length ? <UserCarousel users={users} /> : <p className="text-4xl font-bold text-romanticRed">No match found</p>
         }
       </div>
     </main>
