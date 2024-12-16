@@ -109,7 +109,6 @@ export const AuthProvider = ({ children, location }: AuthProviderProps) => {
       });
       localStorage.removeItem("currentStep");
       localStorage.removeItem("token");
-      localStorage.removeItem("formData");
       localStorage.removeItem("user");
       setIsAuthenticated(false);
       setUser(null);
