@@ -1,12 +1,13 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Loading from "./Loading";
 
 
 export const ProtectedRoute = () => {
   const { isAuthenticated, isSessionChecked } = useAuth();
 
   if (!isSessionChecked) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!isAuthenticated) {

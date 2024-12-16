@@ -9,7 +9,7 @@ const Loading = () => {
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
     }}>
-      <p>Loading...</p>
+      <p>{" "}</p>
     </main>
   )
 }

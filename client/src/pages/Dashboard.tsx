@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { IUser, useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { dashboardBg, defaultPic } from "../assets";
-import Loading from "../components/Loading";
 import { UserCarousel } from "@/components/UserCarousel";
+import { getAge } from "@/lib/utils";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -49,10 +49,6 @@ const Dashboard = () => {
     }
   }, [user, navigate]);
 
-  if (loading) {
-    return <Loading />
-  }
-
   return (
     <main className="main h-screen" style={{
       backgroundImage: `url(${dashboardBg})`,
@@ -62,10 +58,22 @@ const Dashboard = () => {
     }}>
       <div className="flex-center h-[600px] w-full">
         {
+          loading ? (<p className="text-4xl font-bold text-romanticRed">No match found</p>) : null
+        }
+        {
           users?.length ? <UserCarousel users={users} /> : <p className="text-4xl font-bold text-romanticRed">No match found</p>
         }
       </div>
-    </main>
+      <Link to="/profile">
+        <div className="fixed bottom-5 right-5 rounded-xl p-1 pr-5 bg-shade-100 flex items-center gap-2  shadow-lg">
+          <img src={user?.profilePicture || defaultPic} alt="profile" className="w-10 h-10 object-cover border-2 border-shade-500 rounded-full" />
+          <div className="flex-center flex-col ">
+            <p className="text-romanticRed font-bold leading-3">{user?.firstName} {user?.lastName}</p>
+            <p className="text-xs">{getAge(user?.dateOfBirth as string)} years old</p>
+          </div>
+        </div>
+      </Link>
+    </main >
   );
 };
 
