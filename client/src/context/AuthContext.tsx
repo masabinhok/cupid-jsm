@@ -107,9 +107,14 @@ export const AuthProvider = ({ children, location }: AuthProviderProps) => {
           "Content-Type": "application/json",
         },
       });
+      localStorage.removeItem("currentStep");
       localStorage.removeItem("token");
+      localStorage.removeItem("formData");
+      localStorage.removeItem("user");
       setIsAuthenticated(false);
       setUser(null);
+      //refresh the page
+      window.location.href = "/";
     } catch (error) {
       console.error("Logout error:", error);
     }
