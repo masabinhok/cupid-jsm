@@ -14,7 +14,6 @@ const Bio = () => {
   useEffect(() => {
     const { bio, interests } = formData;
     if (bio?.trim() && interests?.length) {
-      console.log("Bio is complete");
       setIsCompleted(true);
     }
   }, [formData.bio, formData.interests, setIsCompleted]);

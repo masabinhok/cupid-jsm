@@ -4,7 +4,6 @@ import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
   const { user } = useAuth();
-  console.log(user)
   const navigate = useNavigate();
   return (
     <main className="main  ">

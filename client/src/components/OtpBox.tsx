@@ -31,7 +31,6 @@ const OtpBox = ({ email }: { email: string }) => {
         setError(data.message);
         throw new Error(data.message || "Server not responding...");
       }
-      console.log(data.message);
     } catch (error) {
       setError((error as Error).message);
       console.error(error);

@@ -11,7 +11,6 @@ const BasicInfo = () => {
   useEffect(() => {
     const { firstName, lastName, dateOfBirth, gender } = formData;
     if (firstName && lastName && dateOfBirth && gender) {
-      console.log("Basic info is complete");
       setIsCompleted(true);
     }
   }, [formData])

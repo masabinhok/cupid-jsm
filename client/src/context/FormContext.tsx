@@ -154,7 +154,7 @@ export const FormProvider = ({ children }: FormProviderProps) => {
       console.error(error);
     } finally {
       localStorage.removeItem("currentStep");
-      console.log("Form submitted successfully");
+
       setLoading(false);
       navigate("/dashboard");
     }

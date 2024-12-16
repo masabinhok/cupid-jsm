@@ -105,8 +105,8 @@ export const saveUserInfo = async (req, res) => {
     socialLinks 
   } = req.body;
 
-  // Log the coordinates for debugging purposes
-  console.log(location.coordinates);
+
+
 
   try {
     // Find the user by email and update their information

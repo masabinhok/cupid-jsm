@@ -30,7 +30,6 @@ const upload = multer({dest: 'uploads/'});
 
 
 app.post('/detect-face', upload.single('image'), async (req, res)=>{
-  console.log('File uploaded:', req.file);
   const inputPath = req.file.path;
   const outputPath = `uploads/processed_${req.file.filename}.jpg`;
 
