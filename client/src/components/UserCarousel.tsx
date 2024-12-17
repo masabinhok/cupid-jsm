@@ -6,7 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { IUser } from "@/context/AuthContext"
+import { IUser } from "@/types"
 import { getAge } from "@/lib/utils"
 import { Link } from "react-router-dom"
 

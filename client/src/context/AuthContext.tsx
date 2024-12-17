@@ -1,29 +1,7 @@
+import { IUser } from "@/types";
 import { createContext, useState, useEffect, ReactNode, useContext } from "react";
 
-export interface IUser {
-  email: string;
-  firstName: string | null;
-  lastName: string | null;
-  dateOfBirth: string | null;
-  gender: string | null;
-  middleName?: string | null;
-  profilePicture: string | null;
-  phone?: string | null;
-  bio?: string | null;
-  interests?: string[] | null;
-  location: {
-    city: string | null;
-    country: string | null;
-    coordinates: [number, number] | null;
-  }
-  preferenceGender?: string | null;
-  preferenceAgeRange?: { min: number; max: number } | null;
-  preferenceDistance?: number | null;
-  preferenceCaste?: string[] | null;
-  preferenceInterest?: string[] | null;
-  socialLinks?: string[] | null;
-  _id: string;
-}
+
 
 interface AuthContextType {
   isAuthenticated: boolean;
