@@ -50,26 +50,7 @@ const Preferences = () => {
     formData.preferenceCaste,
   ]);
 
-  // const handleCaste = (e: React.KeyboardEvent) => {
-  //   if (e.key === "Enter") {
-  //     e.preventDefault();
-  //     const input = (e.currentTarget as HTMLInputElement).value.trim();
-
-  //     if (!input) {
-  //       setCasteError("Please enter a valid caste or type 'Any'.");
-  //       return;
-  //     }
-
-  //     if (formData.preferenceCaste?.includes(input)) {
-  //       setCasteError("Caste already exists.");
-  //       return;
-  //     }
-
-  //     updateFormData("preferenceCaste", [...(formData.preferenceCaste || []), input]);
-  //     (e.currentTarget as HTMLInputElement).value = "";
-  //     setCasteError(null);
-  //   }
-  // };
+ 
 
   const handleInterest = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -92,10 +73,7 @@ const Preferences = () => {
     }
   };
 
-  // const removeCaste = (casteToRemove: string) => {
-  //   const updatedCaste = formData.preferenceCaste?.filter((caste) => caste !== casteToRemove);
-  //   updateFormData("preferenceCaste", updatedCaste);
-  // };
+
 
   const removeInterest = (interestToRemove: string) => {
     const updatedInterests = formData.preferenceInterest?.filter((interest) => interest !== interestToRemove);
@@ -165,33 +143,10 @@ const Preferences = () => {
               <option value="Other">Other</option>
             </select>
           </label>
-          {/* <label htmlFor="preferenceCaste">
-            <span className="font-bold">Preferred Caste</span>
-            <input
-              className="input"
-              type="text"
-              placeholder="Add a caste and press Enter"
-              onKeyDown={handleCaste}
-            />
-            {casteError && <p className="text-alert text-sm">{casteError}</p>}
-            <div className="flex gap-2 flex-wrap mb-2">
-              {formData.preferenceCaste?.map((caste, index) => (
-                <div key={caste + index} className="flex items-center gap-2 text-sm bg-softWhite rounded-lg px-2 py-1">
-                  <p>{caste}</p>
-                  <button
-                    type="button"
-                    className="text-red-500 font-bold"
-                    onClick={() => removeCaste(caste)}
-                  >
-                    x
-                  </button>
-                </div>
-              ))}
-            </div>
-          </label> */}
           <label htmlFor="preferenceInterest">
             <span className="font-bold">Preferred Interest</span>
             <input
+              id="preferenceInterest"
               className="input"
               type="text"
               placeholder="Add an interest and press Enter"
