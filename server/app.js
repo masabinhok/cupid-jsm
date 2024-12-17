@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { corsOptions } from './config/corsConfig.js';
 import authRoutes from './routes/authRoutes.js';
-import dashboardRoutes from './routes/dashboardRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import multer from 'multer';
 import path from 'path';
@@ -68,10 +68,10 @@ app.post('/detect-face', upload.single('image'), async (req, res)=>{
 
 });
 
-app.use('/dashboard', dashboardRoutes);
 
 // Routes
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 // Error Handling Middleware
 app.use(errorHandler);

@@ -1,9 +1,10 @@
 import express from 'express';
-import { getAllUsers } from '../controllers/dashboardController.js'; // Fix the import path
+import { getAllUsers, getUserProfile } from '../controllers/userController.js'; // Fix the import path
 import { verifyToken } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 router.get('/', verifyToken, getAllUsers);
+router.get('/profile/:id', verifyToken, getUserProfile);
 
 export default router;

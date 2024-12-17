@@ -15,7 +15,7 @@ const Dashboard = () => {
     try {
       setLoading(true);
       const fetchUsers = async () => {
-        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/dashboard`, {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -61,7 +61,11 @@ const Dashboard = () => {
           loading ? (<p className="text-4xl font-bold text-romanticRed">No match found</p>) : null
         }
         {
-          users?.length ? <UserCarousel users={users} /> : <p className="text-4xl font-bold text-romanticRed">No match found</p>
+          users?.length ?
+
+            <UserCarousel users={users} />
+
+            : <p className="text-4xl font-bold text-romanticRed">No match found</p>
         }
       </div>
       <Link to="/profile">
