@@ -1,4 +1,5 @@
 import User from "../models/auth.model.js"
+import logger from "../utils/logger.js";
 
 export const getAllUsers = async (req, res)=>{
    try {
@@ -81,3 +82,60 @@ export const toggleLike = async (req, res)=>{
     res.status(500).json({ error: "Server error" });
   }
 }
+
+export const updateUserProfile  = async (req, res)=>{
+  const userId = req.user.id;
+  const { 
+    firstName, 
+    lastName, 
+    dateOfBirth, 
+    gender, 
+    middleName, 
+    profilePicture, 
+    phone, 
+    bio, 
+    interests, 
+    location, 
+    preference,
+    socialLinks 
+  } = req.body;
+  try {
+    // Find the user by email and update their information
+    const newUser = await User.findOneAndUpdate(
+      {_id: userId},
+      {
+        firstName,
+        lastName,
+        middleName,
+        gender,
+        dateOfBirth,
+        profilePicture,
+        bio,
+        interests,
+        location: {
+          city: location.city,
+          country: location.country,
+        },
+        preference: {
+          gender: preference.gender,
+          ageRange: {
+            min: preference.ageRange.min,
+            max: preference.ageRange.max
+          },
+          maxDistance: preference.maxDistance,
+          interests: preference.interests
+        },
+        socialLinks,
+        phone
+      },
+      { new: true }
+    );
+
+    // Return success response
+    res.status(200).json({ message: 'User info saved successfully.', user: newUser });
+  } catch (error) {
+    // Log error and return failure response
+    logger.error(`Error in saveUserInfo: ${error.message}`);
+    res.status(500).json({ message: 'Error saving user info. Please try again later.', error: error.message });
+  }
+};
