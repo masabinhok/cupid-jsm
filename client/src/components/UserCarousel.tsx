@@ -9,24 +9,14 @@ import {
 import { IUser } from "@/types";
 import { getAge } from "@/lib/utils";
 import { Heart, HeartCrack } from "lucide-react";
-import { useState } from "react";
 import { defaultPic } from "@/assets";
 import { Link } from "react-router-dom";
+import { useLike } from "@/context/LikeContext";
 
-interface UserLikes {
-  [userId: string]: boolean;
-}
+
 
 export function UserCarousel({ users }: { users: IUser[] }) {
-  const [likes, setLikes] = useState<UserLikes>({});
-
-  const toggleLike = (userId: string) => {
-    setLikes((prevLikes) => ({
-      ...prevLikes,
-      [userId]: !prevLikes[userId], // Toggle like/unlike
-    }));
-  };
-
+  const { toggleLike, likes } = useLike();
   return (
     <Carousel className="w-full max-w-xs">
       <CarouselContent>

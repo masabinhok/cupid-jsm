@@ -5,7 +5,8 @@ import { getAge } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom"
 import ProfileNav from "@/components/ProfileNav";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Heart, HeartCrack } from "lucide-react";
+import { useLike } from "@/context/LikeContext";
 
 const OtherProfile = () => {
   const location = useLocation();
@@ -13,6 +14,7 @@ const OtherProfile = () => {
   const [user, setUser] = useState<IUser | null>(null);
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
+  const { likes, toggleLike } = useLike();
 
   useEffect(() => {
     try {
@@ -61,7 +63,12 @@ const OtherProfile = () => {
             </button>
             <img src={user?.profilePicture || defaultPic} alt={user?.firstName || "profilePic"} className="aspect-square w-40 rounded-full object-cover absolute -top-16 border-shade-500 z-10 border-4  " />
             <nav className="flex-between font-bold w-full absolute top-0 bg-transparent/30  p-2">
-              <button className="text-softWhite  rounded-xl p-2 px-4  ">Love</button>
+              <button
+                className="ml-5 text-romanticRed"
+                onClick={() => toggleLike(user?._id)}
+              >
+                {likes[user?._id] ? <Heart fill="red" /> : <HeartCrack />}
+              </button>
               <button className="text-softWhite  rounded-xl p-2 px-4  ">Message</button>
 
 

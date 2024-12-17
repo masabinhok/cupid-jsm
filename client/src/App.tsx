@@ -8,33 +8,36 @@ import YourInfo from "./pages/YourInfo";
 import { FormProvider } from "./context/FormContext";
 import Profile from "./pages/Profile";
 import OtherProfile from "./pages/OtherProfile";
+import { LikeProvider } from "./context/LikeContext";
 
 export default function App() {
   return (
     <Router>
       <AuthProviderWithLocation>
-        <FormProvider>
-          <Routes>
-            {/* Public Route */}
-            <Route path="/auth" element={<Auth />} />
+        <LikeProvider>
+          <FormProvider>
+            <Routes>
+              {/* Public Route */}
+              <Route path="/auth" element={<Auth />} />
 
-            {/* Protected Routes */}
-            <Route path="/" element={<Home />} />
-            <Route element={<ProtectedRoute />}>
-              <Route
-                path="/your-info"
-                element={
+              {/* Protected Routes */}
+              <Route path="/" element={<Home />} />
+              <Route element={<ProtectedRoute />}>
+                <Route
+                  path="/your-info"
+                  element={
 
-                  <YourInfo />
+                    <YourInfo />
 
-                }
-              />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/profile/:id" element={<OtherProfile />} />
-            </Route>
-          </Routes>
-        </FormProvider>
+                  }
+                />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/:id" element={<OtherProfile />} />
+              </Route>
+            </Routes>
+          </FormProvider>
+        </LikeProvider>
       </AuthProviderWithLocation>
     </Router >
   );
