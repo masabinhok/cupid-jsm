@@ -40,12 +40,33 @@ export const LikeProvider = ({ children }: LikeProviderProps) => {
     localStorage.setItem('likes', JSON.stringify(likes));
   }, [likes]);
 
-  const toggleLike = (userId: string) => {
-    setLikes((prevLikes) => ({
-      ...prevLikes,
-      [userId]: !prevLikes[userId], // Toggle like/unlike
-    }));
-    localStorage.setItem('likes', JSON.stringify(likes));
+  const toggleLike = async (userId: string) => {
+    try {
+      setLikes((prevLikes) => ({
+        ...prevLikes,
+        [userId]: !prevLikes[userId], // Toggle like/unlike
+      }));
+      localStorage.setItem('likes', JSON.stringify(likes));
+      try {
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/like/${userId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Server not responding");
+        }
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
   };
   return (
     <LikeContext.Provider value={{
