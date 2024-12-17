@@ -6,7 +6,7 @@ export interface IUser {
   email: string;
   secret: string | null;
   otpGeneratedAt: Date | null;
-  gender: "Male" | "Female" | "Non-binary" | "Other" | null;
+  gender: string | null;
   dateOfBirth: string | null;
   profilePicture: string | null;
   bio: string | null;
@@ -20,11 +20,10 @@ export interface IUser {
     } | null;
   };
   preference: {
-    gender: "Male" | "Female" | "Non-binary" | "Everyone" | null;
-    ageRange: { min: number; max: number } | null;
-    maxDistance: number | null;
-    caste: string[] | null;
-    interests: string[] | null;
+    gender?: string | null;
+    ageRange?: { min: number | null; max: number | null } | null;
+    maxDistance?: number | null;
+    interests?: string[] | null;
   } | null;
   socialLinks: string[] | null;
   matches: string[] | null;
