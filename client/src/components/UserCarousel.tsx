@@ -1,37 +1,65 @@
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
-import { IUser } from "@/types"
-import { getAge } from "@/lib/utils"
-import { Link } from "react-router-dom"
+} from "@/components/ui/carousel";
+import { IUser } from "@/types";
+import { getAge } from "@/lib/utils";
+import { Heart, HeartCrack } from "lucide-react";
+import { useState } from "react";
+import { defaultPic } from "@/assets";
+import { Link } from "react-router-dom";
+
+interface UserLikes {
+  [userId: string]: boolean;
+}
 
 export function UserCarousel({ users }: { users: IUser[] }) {
+  const [likes, setLikes] = useState<UserLikes>({});
+
+  const toggleLike = (userId: string) => {
+    setLikes((prevLikes) => ({
+      ...prevLikes,
+      [userId]: !prevLikes[userId], // Toggle like/unlike
+    }));
+  };
+
   return (
     <Carousel className="w-full max-w-xs">
       <CarouselContent>
         {users.map((user) => (
           <CarouselItem key={user?._id}>
             <div className="p-1">
-              <Link to={`/profile/${user?._id}`} className="block">
-                <Card className="border-4 border-shade-500 mt-5">
-                  <CardContent className="flex aspect-square items-center justify-center p-6 rounded-lg" style={{
-                    backgroundImage: `url(${user?.profilePicture})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}>
-                  </CardContent>
-                </Card>
-              </Link>
-              <div className="flex-center  flex-col text-normal p-4">
-                <p className="text-lg font-bold">{user?.firstName} {user?.lastName}</p>
-                <p className="text-sm">{getAge(user?.dateOfBirth as string)} years old</p>
-              </div>
+              <Card className="border-4 border-shade-500 mt-5">
+                <CardContent className="flex flex-col aspect-square items-center justify-center rounded-lg relative">
+                  {/* User Profile Picture */}
+                  <Link to={`/profile/${user?._id}`} className="w-full h-full">
+                    <img
+                      src={user?.profilePicture || defaultPic}
+                      alt={`${user?.firstName} ${user?.lastName}`}
+                      className="w-full h-full rounded-lg object-cover border-4 border-t-0 border-shade-400 "
+                    />
+                  </Link>
+                  {/* Like/Unlike Button */}
+                  <button
+                    className="absolute bottom-2 right-2 text-romanticRed"
+                    onClick={() => toggleLike(user?._id)}
+                  >
+                    {likes[user?._id] ? <Heart fill="red" /> : <HeartCrack />}
+                  </button>
+                  <div className="flex-center rounded-xl w-full text-shade-500 flex-col p-4">
+                    <p className="text-lg font-bold">
+                      {user?.firstName} {user?.lastName}
+                    </p>
+                    <p className="text-sm">
+                      {getAge(user?.dateOfBirth as string)} years old
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </CarouselItem>
         ))}
@@ -39,5 +67,5 @@ export function UserCarousel({ users }: { users: IUser[] }) {
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
-  )
+  );
 }
