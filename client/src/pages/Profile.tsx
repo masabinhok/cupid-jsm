@@ -29,7 +29,7 @@ const Profile = () => {
   const [interestError, setInterestError] = useState<string | null>(null);
   const [changeProfile, setChangeProfile] = useState<boolean>(false);
   const { submitForm } = useForm();
-  const [logout, setLogout] = useState<boolean>(false);
+  const { handleLogout } = useAuth();
 
   const handleSocial = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -67,7 +67,7 @@ const Profile = () => {
     }
   };
 
-  const { handleLogout } = useAuth();
+
 
   const removeSocial = (link: string) => {
     const updatedLinks = user?.socialLinks?.filter((socialLink) => socialLink !== link);
@@ -248,6 +248,14 @@ const Profile = () => {
             </AlertDialog>
 
           </button>
+          <span
+            className="absolute top-5 right-5 bg-romanticRed/10  text-softWhite  flex-center  p-2 text-sm hover:opacity-80 tranimate flex-center flex-col"
+          >
+            <p>Loves: {user?.likesSent?.length}</p>
+
+            <p>{" "}Lovedby: {user?.likesReceived?.length}</p>
+
+          </span>
 
           <img
             onClick={() => setChangeProfile((prev) => !prev)}
