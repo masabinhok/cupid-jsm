@@ -3,10 +3,21 @@ import Loading from "@/components/Loading";
 import { IUser } from "@/types";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, LogOut, Save } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import ProfilePic from "@/components/your-infos/ProfilePic";
 import { useForm } from "@/context/FormContext";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 const Profile = () => {
   const _user = useAuth().user;
@@ -18,6 +29,7 @@ const Profile = () => {
   const [interestError, setInterestError] = useState<string | null>(null);
   const [changeProfile, setChangeProfile] = useState<boolean>(false);
   const { submitForm } = useForm();
+  const [logout, setLogout] = useState<boolean>(false);
 
   const handleSocial = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -54,6 +66,8 @@ const Profile = () => {
       setError(null); // Clear error on successful addition
     }
   };
+
+  const { handleLogout } = useAuth();
 
   const removeSocial = (link: string) => {
     const updatedLinks = user?.socialLinks?.filter((socialLink) => socialLink !== link);
@@ -209,10 +223,32 @@ const Profile = () => {
           </button>
           <button
             onClick={() => updateProfile()}
-            className="absolute -top-12 -right-0 bg-shade-100/50 rounded-full p-1 hover:text-normal tranimate"
+            className="absolute -top-12 -right-0 bg-shade-100/50 rounded-full p-1 hover:opacity-80 tranimate"
           >
             <Save />
           </button>
+          <button
+            className="absolute top-5 left-5 bg-romanticRed/90 rounded-full text-softWhite  flex-center  p-2 text-sm hover:opacity-80 tranimate"
+          >
+            <AlertDialog>
+              <AlertDialogTrigger><LogOut className="w-5 " /></AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure you want to logout?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will end your session and you'll need to authenticate again
+                    . Make sure to save any unsaved work before logging out.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction className="bg-romanticRed " onClick={handleLogout} >Continue</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
+          </button>
+
           <img
             onClick={() => setChangeProfile((prev) => !prev)}
             src={user?.profilePicture || defaultPic}
@@ -608,7 +644,7 @@ const Profile = () => {
           </form>
         </div>
       </section>
-    </main>
+    </main >
   );
 };
 
