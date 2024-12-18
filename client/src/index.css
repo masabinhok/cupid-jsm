@@ -37,6 +37,32 @@
     );
 }
 
+ input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ff006f;
+    border-radius: 4px; /* Optional, for rounded corners */
+    background-color: #ccc;
+    cursor: pointer;
+    position: relative;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: #F65D8A; /* Change this to any color */
+  }
+
+  input[type="checkbox"]:checked::after {
+    content: "✔";
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 body {
   font-family: 'Space Grotesk', sans-serif;
   background-color: #ffe5ec;

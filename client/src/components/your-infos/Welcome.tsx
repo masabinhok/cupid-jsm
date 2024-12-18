@@ -12,8 +12,7 @@ const Welcome = () => {
           Let’s tailor your profile to ensure an unforgettable and personalized experience. Share a few details to get started.
         </p>
         <div className="flex-center gap-2 mt-10">
-          <input
-            type="checkbox"
+          <input type="checkbox" id="custom-checkbox" className="w-6 h-6 text-gray-800 bg-gray-300 border-gray-400 rounded focus:ring-0 checked:bg-green-500"
             checked={isCompleted}
             onChange={() => setIsCompleted(!isCompleted)}
           />
