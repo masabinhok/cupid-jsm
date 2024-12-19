@@ -227,7 +227,7 @@ const Profile = () => {
           >
             <Save />
           </button>
-          <button
+          <div
             className="absolute top-5 left-5 bg-romanticRed/90 rounded-full text-softWhite  flex-center  p-2 text-sm hover:opacity-80 tranimate"
           >
             <AlertDialog>
@@ -247,7 +247,7 @@ const Profile = () => {
               </AlertDialogContent>
             </AlertDialog>
 
-          </button>
+          </div>
           <span
             className="absolute top-5 right-5 bg-romanticRed/10  text-softWhite  flex-center  p-2 text-sm hover:opacity-80 tranimate flex-center flex-col"
           >
