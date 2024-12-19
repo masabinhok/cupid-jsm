@@ -9,6 +9,7 @@ import { FormProvider } from "./context/FormContext";
 import Profile from "./pages/Profile";
 import OtherProfile from "./pages/OtherProfile";
 import { LikeProvider } from "./context/LikeContext";
+import Message from "./pages/Message";
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
                   }
                 />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/message/:id" element={<Message />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/profile/:id" element={<OtherProfile />} />
               </Route>

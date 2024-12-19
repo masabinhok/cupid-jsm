@@ -3,7 +3,7 @@ import Loading from "@/components/Loading";
 import { IUser } from "@/types";
 import { getAge } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import ProfileNav from "@/components/ProfileNav";
 import { ArrowLeft, Heart, HeartCrack } from "lucide-react";
 import { useLike } from "@/context/LikeContext";
@@ -69,7 +69,9 @@ const OtherProfile = () => {
               >
                 {likes[user?._id] ? <Heart fill="red" /> : <HeartCrack />}
               </button>
-              <button className="text-softWhite  rounded-xl p-2 px-4  ">Message</button>
+              <Link to={`/message/${user?._id}`}>
+                <button className="text-softWhite  rounded-xl p-2 px-4  ">Message</button></Link>
+
 
 
             </nav>

@@ -36,3 +36,11 @@ export interface IUser {
   updatedAt: Date | null;
   phone: string | null;
 }
+
+export interface IMessage {
+  senderId: string | null;
+  receiverId: string | null;
+  text: string | null;
+  timestamp: string | null;
+  chatId: string  | null;
+}
