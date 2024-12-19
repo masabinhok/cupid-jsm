@@ -1,21 +1,23 @@
-import app from "../app";
+
 import { spawn } from 'child_process';
 import fs from 'fs'
-import cloudinary from './config/cloudinary.js';
+import cloudinary from '../config/cloudinary.js';
 import multer from 'multer';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import express from 'express';
+const router = express.Router();
 
 const upload = multer({dest: 'uploads/'});
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.post('/detect-face', upload.single('image'), async (req, res)=>{
+router.post('/', upload.single('image'), async (req, res)=>{
   const inputPath = req.file.path;
   const outputPath = `uploads/processed_${req.file.filename}.jpg`;
 
   const python = spawn('python', [
-    path.join(__dirname, './utils/faceDetection.py'),
+    path.join(__dirname, '../utils/faceDetection.py'),
     inputPath,
     outputPath
   ]);
@@ -48,3 +50,5 @@ app.post('/detect-face', upload.single('image'), async (req, res)=>{
       });
 
 });
+
+export default router;

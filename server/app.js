@@ -5,6 +5,7 @@ import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
+import detectFaceRoutes from './routes/detectFaceRoutes.js';
 import dotenv from 'dotenv';
 import { connectToDB } from './config/db.js';
 import http from 'http';
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/message', messageRoutes);
+app.use('/detect-face',detectFaceRoutes )
 
 app.use(errorHandler);
 
