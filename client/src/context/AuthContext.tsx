@@ -85,10 +85,7 @@ export const AuthProvider = ({ children, location }: AuthProviderProps) => {
           "Content-Type": "application/json",
         },
       });
-      localStorage.removeItem("currentStep");
-      localStorage.removeItem("formData");
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      localStorage.clear();
       setIsAuthenticated(false);
       setUser(null);
       //refresh the page

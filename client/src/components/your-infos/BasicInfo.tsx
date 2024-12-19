@@ -63,6 +63,7 @@ const BasicInfo = () => {
                 Phone <span className="text-sm">(optional for Cupid's initial phase)</span>
               </span>
               <input
+                id="phone"
                 value={formData.phone ?? ""}
                 onChange={(e) => updateFormData("phone", e.target.value)}
                 placeholder="98419837.."
@@ -74,6 +75,7 @@ const BasicInfo = () => {
             <label htmlFor="dateOfBirth">
               <span className="font-bold">Date Of Birth</span>
               <input
+                id="dateOfBirth"
                 value={formData.dateOfBirth ?? ""}
                 onChange={(e) => updateFormData("dateOfBirth", e.target.value)}
                 type="date"
@@ -86,6 +88,7 @@ const BasicInfo = () => {
           <label htmlFor="gender">
             <span className="font-bold">Gender</span>
             <select
+              id="gender"
               value={formData.gender ?? ""}
               onChange={(e) => updateFormData("gender", e.target.value)}
               name="gender"

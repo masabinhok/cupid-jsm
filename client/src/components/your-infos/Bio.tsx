@@ -60,6 +60,7 @@ const Bio = () => {
             <label htmlFor="bio">
               <span className="font-bold">Bio</span>
               <textarea
+                id="bio"
                 value={formData.bio ?? ""}
                 onChange={(e) => updateFormData("bio", e.target.value)}
                 placeholder="What I do is art..."
@@ -73,6 +74,7 @@ const Bio = () => {
             <label htmlFor="interests">
               <span className="font-bold">Interests</span>
               <input
+                id="interests"
                 className="input"
                 type="text"
                 placeholder="Add an interest and press Enter"

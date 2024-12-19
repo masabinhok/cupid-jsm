@@ -275,6 +275,7 @@ const Profile = () => {
               <label htmlFor="firstName">
                 <span className="font-bold">First Name</span>
                 <input
+                  id="firstName"
                   value={user?.firstName ?? ""}
                   onChange={(e) =>
                     setUser((prev) =>
@@ -298,6 +299,7 @@ const Profile = () => {
                       prev ? { ...prev, middleName: e.target.value } : prev
                     )
                   }
+                  id="middleName"
                   placeholder="..."
                   type="text"
                   name="middleName"
@@ -307,6 +309,7 @@ const Profile = () => {
               <label htmlFor="lastName">
                 <span className="font-bold">Last Name</span>
                 <input
+                  id="lastName"
                   value={user?.lastName ?? ""}
                   onChange={(e) =>
                     setUser((prev) =>
@@ -325,6 +328,7 @@ const Profile = () => {
               <label htmlFor="phone">
                 <span className="font-bold">Phone</span>
                 <input
+                  id="phone"
                   value={user?.phone ?? ""}
                   onChange={(e) =>
                     setUser((prev) =>
@@ -340,6 +344,7 @@ const Profile = () => {
               <label htmlFor="dateOfBirth">
                 <span className="font-bold">Date Of Birth</span>
                 <input
+                  id="dateOfBirth"
                   value={
                     user?.dateOfBirth
                       ? new Date(user.dateOfBirth).toISOString().split("T")[0] // Convert ISO to yyyy-MM-dd
@@ -363,6 +368,7 @@ const Profile = () => {
             <label htmlFor="gender">
               <span className="font-bold">Gender</span>
               <select
+                id="gender"
                 value={user?.gender || ""}
                 onChange={(e) =>
                   setUser((prev) =>
@@ -385,6 +391,7 @@ const Profile = () => {
               <label htmlFor="bio">
                 <span className="font-bold">Bio</span>
                 <textarea
+                  id="bio"
                   value={user?.bio ?? ""}
                   onChange={(e) =>
                     setUser((prev) =>
@@ -402,6 +409,7 @@ const Profile = () => {
               <label htmlFor="interests">
                 <span className="font-bold">Interests</span>
                 <input
+                  id="interests"
                   className="input"
                   type="text"
                   placeholder="Add an interest and press Enter"
@@ -481,6 +489,7 @@ const Profile = () => {
               <label htmlFor="preferenceDistance">
                 <span className="font-bold">MaxDistance (km)</span>
                 <input
+                id="preferenceDistance"
                   value={user?.preference?.maxDistance ?? ""}
                   onChange={(e) =>
                     setUser((prev) =>
@@ -505,6 +514,7 @@ const Profile = () => {
                 <span className="font-bold">Min Age</span>
                 <input
                   type="number"
+                  id="ageRangeMin"
                   value={user?.preference?.ageRange?.min ?? ""}
                   onChange={(e) =>
                     setUser((prev) =>
@@ -529,6 +539,7 @@ const Profile = () => {
               <label htmlFor="maxAge">
                 <span className="font-bold">Max Age</span>
                 <input
+                id="maxAge"
                   value={user?.preference?.ageRange?.max ?? ""}
                   onChange={(e) =>
                     setUser((prev) =>
@@ -556,6 +567,7 @@ const Profile = () => {
             <label htmlFor="preferenceGender">
               <span className="font-bold">Preferred Gender</span>
               <select
+              id="preferenceGender"
                 value={user?.preference?.gender ?? ""}
                 onChange={(e) =>
                   setUser((prev) =>

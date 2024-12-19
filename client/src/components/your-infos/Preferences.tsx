@@ -50,7 +50,7 @@ const Preferences = () => {
     formData.preferenceCaste,
   ]);
 
- 
+
 
   const handleInterest = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -89,6 +89,7 @@ const Preferences = () => {
             <label htmlFor="preferenceDistance">
               <span className="font-bold">Maximum Distance (km)</span>
               <input
+                id="preferenceDistance"
                 value={formData.preferenceDistance ?? ""}
                 onChange={(e) => updateFormData("preferenceDistance", e.target.value)}
                 type="number"
@@ -100,6 +101,7 @@ const Preferences = () => {
             <label htmlFor="minAge">
               <span className="font-bold">Min Age</span>
               <input
+                id="minAge"
                 value={formData.preferenceAgeRange?.min ?? ""}
                 onChange={(e) =>
                   updateFormData("preferenceAgeRange", {
@@ -115,6 +117,7 @@ const Preferences = () => {
             <label htmlFor="maxAge">
               <span className="font-bold">Max Age</span>
               <input
+                id="maxAge"
                 value={formData.preferenceAgeRange?.max ?? ""}
                 onChange={(e) =>
                   updateFormData("preferenceAgeRange", {
@@ -132,6 +135,7 @@ const Preferences = () => {
           <label htmlFor="preferenceGender">
             <span className="font-bold">Preferred Gender</span>
             <select
+              id="preferenceGender"
               value={formData.preferenceGender ?? ""}
               onChange={(e) => updateFormData("preferenceGender", e.target.value)}
               className="input"
