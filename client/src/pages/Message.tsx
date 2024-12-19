@@ -7,6 +7,7 @@ import { IMessage, IUser } from "@/types";
 import { defaultPic } from "@/assets";
 import { ArrowLeft } from "lucide-react";
 import ProfileNav from "@/components/ProfileNav";
+import BackNav from "@/components/BackNav";
 
 const Message = () => {
   const location = useLocation();
@@ -105,15 +106,13 @@ const Message = () => {
     }
   })
 
-  const navigate = useNavigate();
+
 
   return (
     <main className="main">
 
       <div className="flex flex-col bg-shade-200 max-w-[600px] w-full rounded-xl p-3 text-romanticRed relative">
-        <button onClick={() => navigate('/dashboard')} className="absolute -top-12 -left-0 bg-shade-100/50 rounded-full p-1 hover:text-normal tranimate">
-          <ArrowLeft />
-        </button>
+        <BackNav />
         <div className="flex items-center gap-3 p-3">
           <Link className="flex items-center gap-3" to={`/profile/${selectedUserId}`}>
             <img src={user?.profilePicture || defaultPic} alt="profile" className="aspect-square w-12 h-12 rounded-full object-cover" />

@@ -18,6 +18,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import BackNav from "@/components/BackNav";
 
 const Profile = () => {
   const _user = useAuth().user;
@@ -215,12 +216,7 @@ const Profile = () => {
     >
       <section className="w-full p-10 flex max-w-[600px] mt-10 ">
         <div className="relative w-full  bg-shade-100/30 rounded-xl flex-center flex-col">
-          <button
-            onClick={() => navigate("/dashboard")}
-            className="absolute -top-12 -left-0 bg-shade-100/50 rounded-full p-1 hover:text-normal tranimate"
-          >
-            <ArrowLeft />
-          </button>
+          <BackNav />
           <button
             onClick={() => updateProfile()}
             className="absolute -top-12 -right-0 bg-shade-100/50 rounded-full p-1 hover:opacity-80 tranimate"

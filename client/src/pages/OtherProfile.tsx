@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import ProfileNav from "@/components/ProfileNav";
 import { ArrowLeft, Heart, HeartCrack } from "lucide-react";
 import { useLike } from "@/context/LikeContext";
+import BackNav from "@/components/BackNav";
 
 const OtherProfile = () => {
   const location = useLocation();
@@ -58,9 +59,7 @@ const OtherProfile = () => {
       {
         user ? (
           <div className="flex flex-col items-center max-w-[800px] rounded-xl h-[500px]  border-4 border-shade-500 w-full relative  mt-16 text-romanticRed p-3">
-            <button onClick={() => navigate('/dashboard')} className="absolute -top-12 -left-0 bg-shade-100/50 rounded-full p-1 hover:text-normal tranimate">
-              <ArrowLeft />
-            </button>
+            <BackNav />
             <img src={user?.profilePicture || defaultPic} alt={user?.firstName || "profilePic"} className="aspect-square w-40 rounded-full object-cover absolute -top-16 border-shade-500 z-10 border-4  " />
             <nav className="flex-between font-bold w-full absolute top-0 bg-transparent/30  p-2">
               <button
