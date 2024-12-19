@@ -2,8 +2,8 @@ import { defaultPic, otherBg } from "@/assets";
 import Loading from "@/components/Loading";
 import { IUser } from "@/types";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, LogOut, Save } from "lucide-react";
+import { Link } from "react-router-dom";
+import { LogOut, Save } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import ProfilePic from "@/components/your-infos/ProfilePic";
 import { useForm } from "@/context/FormContext";
@@ -24,7 +24,6 @@ const Profile = () => {
   const _user = useAuth().user;
   const userId = _user?._id;
   const [user, setUser] = useState<IUser | null>(null);
-  const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [interestError, setInterestError] = useState<string | null>(null);

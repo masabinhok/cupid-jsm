@@ -1,11 +1,10 @@
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useRef, useState } from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import socket from "@/utils/socket";
 import clsx from "clsx";
 import { IMessage, IUser } from "@/types";
 import { defaultPic } from "@/assets";
-import { ArrowLeft } from "lucide-react";
 import ProfileNav from "@/components/ProfileNav";
 import BackNav from "@/components/BackNav";
 

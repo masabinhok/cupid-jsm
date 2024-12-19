@@ -3,9 +3,9 @@ import Loading from "@/components/Loading";
 import { IUser } from "@/types";
 import { getAge } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import ProfileNav from "@/components/ProfileNav";
-import { ArrowLeft, Heart, HeartCrack } from "lucide-react";
+import { Heart, HeartCrack } from "lucide-react";
 import { useLike } from "@/context/LikeContext";
 import BackNav from "@/components/BackNav";
 
@@ -13,7 +13,6 @@ const OtherProfile = () => {
   const location = useLocation();
   const userId = location.pathname.split('/')[2];
   const [user, setUser] = useState<IUser | null>(null);
-  const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const { likes, toggleLike } = useLike();
 
