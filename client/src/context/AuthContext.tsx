@@ -39,7 +39,7 @@ export const AuthProvider = ({ children, location }: AuthProviderProps) => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const publicRoutes = ["/auth",];
+    const publicRoutes = ["/auth", "/"];
 
     if (publicRoutes.includes(location.pathname)) {
       setIsSessionChecked(true);

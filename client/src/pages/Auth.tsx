@@ -37,10 +37,8 @@ const Auth = () => {
       setLoading(false);
     }
   }
-
-
   if (isAuthenticated) {
-    navigate('/');
+    navigate('/dashboard');
   }
 
   return (
