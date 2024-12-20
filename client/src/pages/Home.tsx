@@ -1,9 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import {  heroBg, logo } from "../assets";
-import { useAuth } from "../context/AuthContext";
+import { heroBg, logo } from "../assets";
 
 const Home = () => {
-  const { user } = useAuth();
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   return (
     <main className="main  ">
@@ -22,15 +21,10 @@ const Home = () => {
           <h2 className="font-bold text-6xl max-md:text-4xl">Find Love, Simplified.</h2>
           <p className="max-w-[400px] max-md:max-w-[300px] max-md:text-sm">Experience seamless connections, personalized matches, and everything you need for the perfect date—all in one place.</p>
           <div className="flex mt-10 flex-col gap-2">
-            <span className="text-sm">
-              {
-                user ? <h1 className="">Welcome, <span className="font-bold ">{user?.email}</span></h1> : null
-              }
-            </span>
             <button onClick={
-              user ? () => navigate('/dashboard') : () => navigate('/auth')
+              token ? () => navigate('/dashboard') : () => navigate('/auth')
             } className="bg-shade-500 w-fit hover:opacity-80 shadow-sm shadow-normal  rounded-xl px-10 py-2 tranimate ">
-              {user ? "Let's Cupidibi" : "Authenticate now"}
+              {token ? "Go to Dashboard" : "Authenticate now"}
             </button>
           </div>
         </div>
