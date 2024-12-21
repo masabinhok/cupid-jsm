@@ -2,6 +2,9 @@
 
 Cupid is a feature-rich, love-themed dating app designed to connect people in meaningful ways. With Cupid, users can explore meaningful connections through modern matchmaking features, real-time communication, and secure interactions. Built using the MERN stack (MongoDB, Express, React, Node.js), the app prioritizes scalability and security, offering plans to integrate advanced functionalities like passwordless authentication and AI-driven matchmaking.
 
+![image](https://github.com/user-attachments/assets/3614938d-15c7-44a1-8b8b-322dcf2e3f7a)
+
+
 ## Purpose
 Cupid aims to elevate the online dating experience by providing:
 - A user-centric platform for finding meaningful matches.
@@ -146,7 +149,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 We'd love to hear your thoughts or help resolve any issues:
-- **Email**: yaman@example.com
-- **GitHub**: [Yaman](https://github.com/Yaman)
+- **Email**: sabin.shrestha.er@gmail.com
+- **GitHub**: [Yaman](https://github.com/masabinhok)
 
 Feel free to explore, use, and contribute to Cupid!
