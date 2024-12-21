@@ -3,12 +3,12 @@ import heroBg from './hero.png';
 import logo from './logo.png';
 import goodBye from './goodbye.png';
 import location from './location.png'
-import socialMedia from  './socialMedia.png'
+import socialMedia from './socialmedia.png'
 import logosm from './logosm.png'
-import cupidStore from './cupidStore.png'
+import cupidStore from './cupidstore.png'
 import cupidReserve from './cupidreserve.png'
 import cupidConnect from './cupidconnect.png'
-import cupidSpace from './cupidSpace.png'
+import cupidSpace from './cupidspace.png'
 import dashboard from './dashboard.png'
 import profileBg from './profileBg.png'
 import dashboardBg from './dashboardBg.png';
