@@ -261,7 +261,7 @@ const Profile = () => {
 
           {
             changeProfile && (
-              <section className="absolute top-0 left-0 w-full  bg-shade-100 rounded-xl flex-center flex-col">
+              <section className="absolute top-0 left-0 w-full  bg-shade-100 rounded-xl flex-center flex-col pb-5" >
                 <span onClick={() => setChangeProfile((prev) => !prev)} className="top-2 right-5 absolute text-3xl font-bold text-romanticRed cursor-pointer">x</span>
                 <ProfilePic />
                 <button className="px-6 p-1 shadow-sm shadow-normal rounded-sm hover:opacity-80 bg-shade-500/20" onClick={submitForm}>
