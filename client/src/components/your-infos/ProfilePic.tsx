@@ -49,7 +49,7 @@ const ProfilePic = () => {
       const faceDetectionFormData = new FormData();
       faceDetectionFormData.append("image", file);
 
-      const detectResponse = await fetch("http://localhost:5000/detect-face", {
+      const detectResponse = await fetch(`${import.meta.env.VITE_SERVER_URL}/detect-face`, {
         method: "POST",
         body: faceDetectionFormData,
       });
