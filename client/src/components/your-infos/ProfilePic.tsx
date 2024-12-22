@@ -14,14 +14,8 @@ const ProfilePic = () => {
   const [isUploading, setIsUploading] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsCompleted(false);
-  }, [setIsCompleted]);
-
-  useEffect(() => {
-    if (formData.profilePicture) {
-      setIsCompleted(true);
-    }
-  }, [formData.profilePicture, setIsCompleted]);
+    setIsCompleted(true);
+  }, []);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
