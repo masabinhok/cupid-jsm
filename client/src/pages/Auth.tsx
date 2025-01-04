@@ -51,7 +51,7 @@ const Auth = () => {
       <section className="p-5 flex-center flex-col max-w-[400px] w-full">
         <h2 className="text-2xl">Welcome to Cupid 💘</h2>
         <form onSubmit={(e) => handleSubmit(e)} className="mt-5 w-full">
-          <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="sabin.shrestha.er@gmail.com" className="input" type="email" id="email" />
+          <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter a valid email address" className="input" type="email" id="email" />
 
           <button type="submit" className="bg-white rounded-xl p-2 w-full">
             {loading ? "Authenticating..." : "Authenticate"}
