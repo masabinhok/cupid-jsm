@@ -2,11 +2,13 @@ import { useState } from "react"
 import OtpInput from "./OtpInput"
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
 
 const OtpBox = ({ email }: { email: string }) => {
   const [otp, setOtp] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false)
   const [resend, setResend] = useState<boolean>(false)
+  const [dialogOpen, setDialogOpen] = useState<boolean>(false)
   const { setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null)
@@ -88,6 +90,44 @@ const OtpBox = ({ email }: { email: string }) => {
             resend ? "Resending OTP..." : "Resend OTP"
           }
         </p>
+        <p className="text-center text-sm mt-3">
+          OTP sent to <b>{email}</b>. Is this a wrong email? <button
+            disabled={dialogOpen || loading}
+            onClick={() => setDialogOpen(!dialogOpen)}
+            className="hover:underline text-romanticRed font-bold "
+          >
+            Change
+          </button>
+        </p>
+
+
+        <dialog
+          className={clsx(
+            "bg-softWhite mt-10 absolute top-20  p-8 rounded-xl text-romanticRed border-romanticRed border-2 shadow-lg",
+            { hidden: !dialogOpen }
+          )}
+          open={dialogOpen}
+        >
+          <p className="text-base font-medium mb-4 text-center">
+            Are you sure you want to change your email?
+          </p>
+          <div className="flex justify-around mt-5">
+            <button
+              className="text-romanticRed text-sm p-1 px-3 rounded-xl border-2 hover:bg-romanticRed hover:text-softWhite transition duration-200"
+              onClick={() => setDialogOpen(false)}
+            >
+              Cancel
+            </button>
+            <button
+              className="bg-romanticRed rounded-xl p-1 px-3 text-sm text-softWhite hover:opacity-90 transition duration-200"
+              onClick={() => {
+                window.location.reload()
+              }}
+            >
+              Confirm
+            </button>
+          </div>
+        </dialog>
       </div>
     </section>
   )
